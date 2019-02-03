@@ -91,7 +91,7 @@ class ALGModus extends IPSModule
 				//$zp_conf = getValue($this->GetIDForIdent("ZP_Conf"));
 				//$sws_abw = getValue($this->GetIDForIdent("SWS_Abw"));
 				//$abw = getValue($this->GetIDForIdent("Abw"));
-				//$this->ProgrammAuswahl();
+				$this->ALGAuswahl();
             		break;
 				
         	}
