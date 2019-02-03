@@ -1,11 +1,11 @@
 {
-    "id": "{05d1f922-21c6-4107-b8ee-ad2dea73c788}",
-    "name": "HeizungssteuerungRegler",
+    "id": "{211a2e2a-8c66-4886-86c7-126cf1120f28}",
+    "name": "ALGModus",
     "type": 3,
     "vendor": "",
     "aliases": 
     [
-    "Regler"
+    "Modus"
     ],
     "parentRequirements": [],
     "childRequirements": [],
