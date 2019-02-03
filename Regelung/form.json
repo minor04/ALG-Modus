@@ -2,5 +2,10 @@
 	"elements":
 	[
 		{ "type": "SelectVariable", "name": "V_An_01", "caption": "BWM 01" }
+	],
+		"actions":
+	[
+
+		{ "type": "Button", "label": "Test", "onClick": "MIN_Test($id);" }
 	]
 }
