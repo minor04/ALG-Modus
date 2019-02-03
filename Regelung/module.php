@@ -49,7 +49,7 @@ class ALGModus extends IPSModule
 			//$triggerIDAbw = $this->ReadPropertyInteger("TrigAbwesend");
 			//$this->RegisterMessage($triggerIDAbw, 10603 /* VM_UPDATE */);
 			
-				}
+
 			
 			//Standartaktion Aktivieren
 			$this->VariabelStandartaktion();
