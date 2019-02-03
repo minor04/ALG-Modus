@@ -89,7 +89,7 @@ class ALGModus extends IPSModule
 				//$this->ProgrammAuswahl();
             		//break;
 				
-        	}
+        	//}
 		
         $this->SetValue($key, $value);	
 		
