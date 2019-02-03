@@ -1,5 +1,7 @@
 <?
 
+$mod = 0;
+
 class ALGModus extends IPSModule
 	{
 		
@@ -82,7 +84,7 @@ class ALGModus extends IPSModule
         */
 	
 	public function RequestAction($key, $value){
-		global $mod ;
+		global $mod;
         	switch ($key) {
         		case 'Mod':
 				$mod = $value;
@@ -103,6 +105,8 @@ class ALGModus extends IPSModule
 	public function VariabelStandartaktion(){
 		
 		$this->EnableAction("Mod");
+		$this->EnableAction("MD");
+		$this->EnableAction("MZ");
 		
 	}
 		
@@ -130,13 +134,53 @@ class ALGModus extends IPSModule
 		//IPS_SetHidden($this->GetIDForIdent("Abw"), true);
 		
 	}
+	
+	public function ALGAuswahl(){
+		
+	global $mod;
+		//$test = getValue($this->GetIDForIdent("SWS_Abw"));
+		
+		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
+		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
+		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
+		$VariabelID_An = IPS_GetEventIDByName("Bis", $InstanzID);
+		
+		if($mod == 2){
+			//SetValue($this->GetIDForIdent("prog"), 0);
+			IPS_SetHidden($this->GetIDForIdent("MD"), true);
+			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
+			IPS_SetHidden($VariabelID_Ab, true);
+			IPS_SetHidden($VariabelID_An, true);
+			//echo "Aus";
+		}
+		else if($mod == 3){
+			IPS_SetHidden($this->GetIDForIdent("MD"), false);
+			IPS_SetHidden($this->GetIDForIdent("HZ"), false);
+			IPS_SetHidden($VariabelID_Ab, true);
+			IPS_SetHidden($VariabelID_An, true);
+			//echo "Hand";
+		}
+		else if($mod == 4){
+			IPS_SetHidden($this->GetIDForIdent("MD"), false);
+			IPS_SetHidden($this->GetIDForIdent("HZ"), false);
+			IPS_SetHidden($VariabelID_Ab, false);
+			IPS_SetHidden($VariabelID_An, false);
+			//echo "Hand";
+		}
+		else{
+			IPS_SetHidden($this->GetIDForIdent("MD"), true);
+			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
+			IPS_SetHidden($VariabelID_Ab, true);
+			IPS_SetHidden($VariabelID_An, true);
+		}
+		
+	}
 		
 	
 	
 	public function Test(){
 		
 		$this->EnableAction("SW_Abs");
-		
 		
 	}
 	
