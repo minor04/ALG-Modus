@@ -106,7 +106,7 @@ class ALGModus extends IPSModule
 		
 		$this->EnableAction("Mod");
 		$this->EnableAction("MD");
-		$this->EnableAction("MZ");
+		$this->EnableAction("HZ");
 		
 	}
 		
