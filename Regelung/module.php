@@ -24,8 +24,8 @@ class ALGModus extends IPSModule
 			
 			//___In_IPS_zurverfügungstehende_Variabeln_______________________________________________
 			$this->RegisterVariableInteger("Mod", "Modus", "ALG-Modus", 1);
-			$this->RegisterVariableBoolean("MD", "Meldung", "~Switch", 5);
-			$this->RegisterVariableBoolean("HZ", "Heizung", "~Switch", 6);
+			$this->RegisterVariableBoolean("HZ", "Heizung", "~Switch", 5);
+			$this->RegisterVariableBoolean("MD", "Meldung", "~Switch", 10);
 			//$this->RegisterVariableFloat("SW", "Sollwert", "~Temperature.Room", 3);
 			//$this->RegisterVariableBoolean("ZP_Conf", "ZP_Confort", "~Switch", 11);
 			
@@ -118,17 +118,29 @@ class ALGModus extends IPSModule
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Einstellungen", $KategorieID_Heizung);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
 				
-		$EreignisID =IPS_CreateEvent(1);
-		IPS_SetName($EreignisID, "Von");
-		IPS_SetParent($EreignisID, $InstanzID);
-		IPS_SetPosition($EreignisID, 13);
-		IPS_SetEventCyclic($EreignisID, 1 /* Täglich */ ,5,0,0,0,0);
+		$EreignisID_HZ_01 =IPS_CreateEvent(1);
+		IPS_SetName($EreignisID_HZ_01, "Von");
+		IPS_SetParent($EreignisID_HZ_01, $InstanzID);
+		IPS_SetPosition($EreignisID_HZ_01, 6);
+		IPS_SetEventCyclic($EreignisID_HZ_01, 1 /* Täglich */ ,5,0,0,0,0);
 		
-		$EreignisID_02 =IPS_CreateEvent(1);
-		IPS_SetName($EreignisID_02, "Bis");
-		IPS_SetParent($EreignisID_02, $InstanzID);
-		IPS_SetPosition($EreignisID_02, 14);
-		IPS_SetEventCyclic($EreignisID_02, 1 /* Täglich */ ,5,0,0,0,0);
+		$EreignisID_HZ_02 =IPS_CreateEvent(1);
+		IPS_SetName($EreignisID_HZ_02, "Bis");
+		IPS_SetParent($EreignisID_HZ_02, $InstanzID);
+		IPS_SetPosition($EreignisID_HZ_02, 7);
+		IPS_SetEventCyclic($EreignisID_HZ_02, 1 /* Täglich */ ,5,0,0,0,0);
+			
+		$EreignisID_MD_01 =IPS_CreateEvent(1);
+		IPS_SetName($EreignisID_MD_01, "Von ");
+		IPS_SetParent($EreignisID_MD_01, $InstanzID);
+		IPS_SetPosition($EreignisID_MD_01, 11);
+		IPS_SetEventCyclic($EreignisID_MD_01, 1 /* Täglich */ ,5,0,0,0,0);
+		
+		$EreignisID_MD_02 =IPS_CreateEvent(1);
+		IPS_SetName($EreignisID_MD_02, "Bis ");
+		IPS_SetParent($EreignisID_MD_02, $InstanzID);
+		IPS_SetPosition($EreignisID_MD_02, 12);
+		IPS_SetEventCyclic($EreignisID_MD_02, 1 /* Täglich */ ,5,0,0,0,0);
 	
 		//IPS_SetHidden($this->GetIDForIdent("ZP_Conf"), true);
 		//IPS_SetHidden($this->GetIDForIdent("Abw"), true);
@@ -142,29 +154,39 @@ class ALGModus extends IPSModule
 		
 		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
-		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
-		$VariabelID_An = IPS_GetEventIDByName("Bis", $InstanzID);
+		$VariabelID_HZ_Ab = IPS_GetEventIDByName("Von", $InstanzID);
+		$VariabelID_HZ_An = IPS_GetEventIDByName("Bis", $InstanzID);
+		$VariabelID_MD_Ab = IPS_GetEventIDByName("Von ", $InstanzID);
+		$VariabelID_MD_An = IPS_GetEventIDByName("Bis ", $InstanzID);
 		
 		if($mod == 2){
 			//SetValue($this->GetIDForIdent("prog"), 0);
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
-			IPS_SetHidden($VariabelID_Ab, true);
-			IPS_SetHidden($VariabelID_An, true);
+			IPS_SetHidden($VariabelID_HZ_Ab, true);
+			IPS_SetHidden($VariabelID_HZ_An, true);
+			IPS_SetHidden($VariabelID_MD_Ab, true);
+			IPS_SetHidden($VariabelID_MD_An, true);
 			//echo "Aus";
 		}
 		else if($mod == 3){
 			IPS_SetHidden($this->GetIDForIdent("MD"), false);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), false);
-			IPS_SetHidden($VariabelID_Ab, true);
-			IPS_SetHidden($VariabelID_An, true);
+			IPS_SetHidden($VariabelID_HZ_Ab, true);
+			IPS_SetHidden($VariabelID_HZ_An, true);
+			IPS_SetHidden($VariabelID_MD_Ab, true);
+			IPS_SetHidden($VariabelID_MD_An, true);
 			//echo "Hand";
 		}
 		else if($mod == 4){
+			IPS_SetDisabled($this->GetIDForIdent("MD"), true);
+			IPS_SetDisabled($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($this->GetIDForIdent("MD"), false);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), false);
-			IPS_SetHidden($VariabelID_Ab, false);
-			IPS_SetHidden($VariabelID_An, false);
+			IPS_SetHidden($VariabelID_HZ_Ab, false);
+			IPS_SetHidden($VariabelID_HZ_An, false);
+			IPS_SetHidden($VariabelID_MD_Ab, false);
+			IPS_SetHidden($VariabelID_MD_An, false);
 			//echo "Hand";
 		}
 		else{
