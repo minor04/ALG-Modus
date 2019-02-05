@@ -39,6 +39,7 @@ class ALGModus extends IPSModule
 			$this->RegisterPropertyInteger("AlBWM_04", 0);
 			$this->RegisterPropertyInteger("AlBWM_05", 0);			
 			
+			$this->RegisterPropertyInteger("ALG-HE", 0);
 			//$this->RegisterPropertyInteger("UpdateWeatherInterval", 30);
 			//$this->RegisterPropertyString("APIkey", 0);
 
@@ -186,6 +187,17 @@ class ALGModus extends IPSModule
 	public function Meldung(){
 			
 		//Meldung mus gem. Notification erstellt werden
+		
+	}
+	
+	public function ALGHeizung(){
+		
+		if(getValue($this->GetIDForIdent("MD")) == true){
+			SetValue($this->ReadPropertyInteger("ALG-HE"), true);
+		}
+		else{
+			SetValue($this->ReadPropertyInteger("ALG-HE"), false);
+		}
 		
 	}
 		
