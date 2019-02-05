@@ -1,11 +1,14 @@
 {
 	"elements":
 	[
+		{ "type": "Label", "label": "Inputs" },
 		{ "type": "SelectVariable", "name": "AlBWM_01", "caption": "BWM 01" },
 		{ "type": "SelectVariable", "name": "AlBWM_02", "caption": "BWM 02" },
 		{ "type": "SelectVariable", "name": "AlBWM_03", "caption": "BWM 03" },
 		{ "type": "SelectVariable", "name": "AlBWM_04", "caption": "BWM 04" },
-		{ "type": "SelectVariable", "name": "AlBWM_05", "caption": "BWM 05" }
+		{ "type": "SelectVariable", "name": "AlBWM_05", "caption": "BWM 05" },
+		{ "type": "Label", "label": "Outputs" },
+		{ "type": "SelectVariable", "name": "ALGHE", "caption": "ALG Heizung" }
 	],
 		"actions":
 	[
