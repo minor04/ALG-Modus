@@ -1,6 +1,8 @@
 <?
 
 $mod = 0;
+$hz = 0;
+$md = 0;
 
 class ALGModus extends IPSModule
 	{
@@ -31,9 +33,11 @@ class ALGModus extends IPSModule
 			//$this->RegisterVariableBoolean("ZP_Conf", "ZP_Confort", "~Switch", 11);
 			
 			//___Modulvariabeln______________________________________________________________________
-			$this->RegisterPropertyInteger("SWS", 1);			
-			//$this->RegisterPropertyBoolean("Abw", true);
-			
+			$this->RegisterPropertyInteger("AlBWM_01", 0);
+			$this->RegisterPropertyInteger("AlBWM_02", 0);
+			$this->RegisterPropertyInteger("AlBWM_03", 0);
+			$this->RegisterPropertyInteger("AlBWM_04", 0);
+			$this->RegisterPropertyInteger("AlBWM_05", 0);			
 			
 			//$this->RegisterPropertyInteger("UpdateWeatherInterval", 30);
 			//$this->RegisterPropertyString("APIkey", 0);
@@ -46,14 +50,20 @@ class ALGModus extends IPSModule
             		parent::ApplyChanges();
 			
 				
-            		//$triggerIDProg = $this->ReadPropertyInteger("TrigProgramm");
-            		//$this->RegisterMessage($triggerIDProg, 10603 /* VM_UPDATE */);
+            		$triggerAlBWM_01 = $this->ReadPropertyInteger("AlBWM_01");
+            		$this->RegisterMessage($triggerAlBWM_01, 10603 /* VM_UPDATE */);
 			
-			//$triggerIDConf = $this->ReadPropertyInteger("TrigConfort");
-			//$this->RegisterMessage($triggerIDConf, 10603 /* VM_UPDATE */);
+            		$triggerAlBWM_02 = $this->ReadPropertyInteger("AlBWM_02");
+            		$this->RegisterMessage($triggerAlBWM_02, 10603 /* VM_UPDATE */);
 			
-			//$triggerIDAbw = $this->ReadPropertyInteger("TrigAbwesend");
-			//$this->RegisterMessage($triggerIDAbw, 10603 /* VM_UPDATE */);
+            		$triggerAlBWM_03 = $this->ReadPropertyInteger("AlBWM_03");
+            		$this->RegisterMessage($triggerAlBWM_03, 10603 /* VM_UPDATE */);
+			
+            		$triggerAlBWM_04 = $this->ReadPropertyInteger("AlBWM_04");
+            		$this->RegisterMessage($triggerAlBWM_04, 10603 /* VM_UPDATE */);
+
+			$triggerAlBWM_05 = $this->ReadPropertyInteger("AlBWM_05");
+            		$this->RegisterMessage($triggerAlBWM_05, 10603 /* VM_UPDATE */);
 			
 
 			
@@ -64,16 +74,18 @@ class ALGModus extends IPSModule
 	
 	        public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
 		//global $sws, $zp_conf, $sws_abw, $abw, $prog, $sw, $sw_abs;
-            		//$triggerIDProg = $this->ReadPropertyInteger("TrigProgramm");
-			//$triggerIDConf = $this->ReadPropertyInteger("TrigConfort");
-			//$triggerIDAbw = $this->ReadPropertyInteger("TrigAbwesend");
+            		$triggerAlBWM_01 = $this->ReadPropertyInteger("AlBWM_01");
+            		$triggerAlBWM_02 = $this->ReadPropertyInteger("AlBWM_02");
+            		$triggerAlBWM_03 = $this->ReadPropertyInteger("AlBWM_03");
+            		$triggerAlBWM_04 = $this->ReadPropertyInteger("AlBWM_04");
+            		$triggerAlBWM_05 = $this->ReadPropertyInteger("AlBWM_05");
 	
-			//if (($SenderID == $triggerIDProg) && ($Message == 10603)){// && (boolval($Data[0]))){
+			if (($SenderID == $triggerAlBWM_01 or $triggerAlBWM_02) && ($Message == 10603)){// && (boolval($Data[0]))){
 				//$prog = getValue($this->GetIDForIdent("prog"));
 				//$sw = getValue($this->GetIDForIdent("SW"));
 				//$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
-				//$this->SWRegler();
-           		//}
+				$this->Meldung();
+           		}
 
         }
         /**
@@ -85,12 +97,12 @@ class ALGModus extends IPSModule
         */
 	
 	public function RequestAction($key, $value){
-		global $mod;
+		global $mod, $hz, $md;
         	switch ($key) {
         		case 'Mod':
 				$mod = $value;
-				//$zp_conf = getValue($this->GetIDForIdent("ZP_Conf"));
-				//$sws_abw = getValue($this->GetIDForIdent("SWS_Abw"));
+				$hz = getValue($this->GetIDForIdent("HZ"));
+				$md = getValue($this->GetIDForIdent("MD"));
 				//$abw = getValue($this->GetIDForIdent("Abw"));
 				$this->ALGAuswahl();
             		break;
@@ -112,11 +124,9 @@ class ALGModus extends IPSModule
 	}
 		
 	
-		public function ZeitPro(){
-		
-	
+	public function ZeitPro(){
+			
 		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
-		//$KategorieID_Settings = IPS_GetCategoryIDByName("Einstellungen", $KategorieID_Heizung);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
 				
 		$EreignisID_von =IPS_CreateEvent(1);
@@ -130,18 +140,13 @@ class ALGModus extends IPSModule
 		IPS_SetParent($EreignisID_bis, $InstanzID);
 		IPS_SetPosition($EreignisID_bis, 11);
 		IPS_SetEventCyclic($EreignisID_bis, 1 /* Täglich */ ,5,0,0,0,0);
-			
-
-		//IPS_SetHidden($this->GetIDForIdent("ZP_Conf"), true);
-		//IPS_SetHidden($this->GetIDForIdent("Abw"), true);
 		
 	}
 	
 	public function ALGAuswahl(){
 		
 	global $mod;
-		//$test = getValue($this->GetIDForIdent("SWS_Abw"));
-		
+
 		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
 		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
@@ -152,7 +157,7 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
-			IPS_SetHidden($VariabelID_HAn, true);
+			IPS_SetHidden($VariabelID_An, true);
 			//echo "Aus";
 		}
 		else if($mod == 3){
@@ -177,7 +182,15 @@ class ALGModus extends IPSModule
 		}
 		
 	}
+	
+	public function Meldung(){
+			
+		//Meldung mus gem. Notification erstellt werden
 		
+	}
+		
+	
+	
 	
 	
 	public function Test(){
