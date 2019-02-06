@@ -81,7 +81,16 @@ class ALGModus extends IPSModule
             		$triggerAlBWM_04 = $this->ReadPropertyInteger("AlBWM_04");
             		$triggerAlBWM_05 = $this->ReadPropertyInteger("AlBWM_05");
 	
+			$triggerMD = $this->ReadPropertyInteger("MD");
+			
 			if (($SenderID == $triggerAlBWM_01 or $triggerAlBWM_02) && ($Message == 10603)){// && (boolval($Data[0]))){
+				//$prog = getValue($this->GetIDForIdent("prog"));
+				//$sw = getValue($this->GetIDForIdent("SW"));
+				//$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
+				$this->Meldung();
+           		}
+			
+			if (($SenderID == $triggerMD) && ($Message == 10603)){// && (boolval($Data[0]))){
 				//$prog = getValue($this->GetIDForIdent("prog"));
 				//$sw = getValue($this->GetIDForIdent("SW"));
 				//$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
@@ -209,7 +218,16 @@ class ALGModus extends IPSModule
 	
 	public function Test(){
 		
-		$this->EnableAction("SW_Abs");
+		//$this->EnableAction("SW_Abs");
+		
+		$a = getValue($this->GetIDForIdent("HZ"));
+		
+		if($a == true){
+			SetValue($this->ReadPropertyInteger("HZ"), true);
+		}
+		else{
+			SetValue($this->ReadPropertyInteger("HZ"), false);
+		}
 		
 	}
 	
