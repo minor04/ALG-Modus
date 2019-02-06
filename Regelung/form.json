@@ -8,7 +8,7 @@
 		{ "type": "SelectVariable", "name": "AlBWM_04", "caption": "BWM 04" },
 		{ "type": "SelectVariable", "name": "AlBWM_05", "caption": "BWM 05" },
 		{ "type": "Label", "label": "Outputs" },
-		{ "type": "SelectVariable", "name": "ALG-HE", "caption": "ALG Heizung" }
+		{ "type": "SelectVariable", "name": "ALG_HE", "caption": "ALG Heizung" }
 	],
 		"actions":
 	[
