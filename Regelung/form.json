@@ -13,6 +13,6 @@
 		"actions":
 	[
 		{ "type": "Button", "label": "ZP Anlegen", "onClick": "MIN_ZeitPro($id);" },
-		{ "type": "Button", "label": "Test", "onClick": "MIN_Test($id);" }
+		{ "type": "Button", "label": "Test", "onClick": "ALGHeizung($id);" }
 	]
 }
