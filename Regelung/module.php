@@ -66,8 +66,6 @@ class ALGModus extends IPSModule
 			$triggerAlBWM_05 = $this->ReadPropertyInteger("AlBWM_05");
             		$this->RegisterMessage($triggerAlBWM_05, 10603 /* VM_UPDATE */);
 			
-			$triggerMD = $this->ReadPropertyInteger("MD");
-			
 			//Standartaktion Aktivieren
 			$this->VariabelStandartaktion();
 			
@@ -82,6 +80,8 @@ class ALGModus extends IPSModule
             		$triggerAlBWM_05 = $this->ReadPropertyInteger("AlBWM_05");
 	
 			$triggerMD = $this->ReadPropertyInteger("MD");
+			
+			$this->SendDebug("MessageSink", "SenderID: ". $SenderID .", Message: ". $Message , 0);
 			
 			if (($SenderID == $triggerAlBWM_01 or $triggerAlBWM_02) && ($Message == 10603)){// && (boolval($Data[0]))){
 				//$prog = getValue($this->GetIDForIdent("prog"));
