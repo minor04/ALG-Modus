@@ -39,7 +39,7 @@ class ALGModus extends IPSModule
 			$this->RegisterPropertyInteger("AlBWM_04", 0);
 			$this->RegisterPropertyInteger("AlBWM_05", 0);			
 			
-			$this->RegisterPropertyInteger("ALG-HE", 0);
+			$this->RegisterPropertyInteger("ALG_HE", 0);
 			//$this->RegisterPropertyInteger("UpdateWeatherInterval", 30);
 			//$this->RegisterPropertyString("APIkey", 0);
 
