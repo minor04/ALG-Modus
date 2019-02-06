@@ -203,10 +203,10 @@ class ALGModus extends IPSModule
 		$a = getValue($this->GetIDForIdent("HZ"));
 		
 		if($a == true){
-			SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+			SetValue($this->ReadPropertyInteger("HE"), true);
 		}
 		else{
-			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+			SetValue($this->ReadPropertyInteger("HE"), false);
 		}
 		
 	}
