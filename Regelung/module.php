@@ -192,7 +192,9 @@ class ALGModus extends IPSModule
 	
 	public function ALGHeizung(){
 		
-		if(getValue($this->GetIDForIdent("HZ")) == true){
+		$a = getValue($this->GetIDForIdent("HZ"));
+		
+		if($a == true){
 			SetValue($this->ReadPropertyInteger("ALG_HE"), true);
 		}
 		else{
