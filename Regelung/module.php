@@ -222,10 +222,10 @@ class ALGModus extends IPSModule
 		$a = getValue($this->GetIDForIdent("HZ"));
 		
 		if($a == true){
-			SetValue($this->ReadPropertyBoolean("HZ"), true);
+			SetValue($this->ReadPropertyInteger("HZ"), true);
 		}
 		else{
-			SetValue($this->ReadPropertyBoolean("HZ"), false);
+			SetValue($this->ReadPropertyInteger("HZ"), false);
 		}
 		
 	}
