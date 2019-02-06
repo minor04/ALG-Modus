@@ -3,6 +3,7 @@
 $mod = 0;
 $hz = 0;
 $md = 0;
+$zp = 0;
 
 class ALGModus extends IPSModule
 	{
@@ -199,15 +200,23 @@ class ALGModus extends IPSModule
 	}
 	
 	public function ALGHeizung(){
+	
+	global $mod, $hz, $zp;
 		
-		$a = getValue($this->GetIDForIdent("HZ"));
-		
-		if($a == true){
+		if($mod == 3 && $hz == true){
 			SetValue($this->ReadPropertyInteger("ALG_HE"), true);
 		}
 		else{
 			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 		}
+		
+		if($mod == 4 && $hz == true && $zp = true){
+			SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+		}
+		else{
+			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+		}
+
 		
 	}
 		
