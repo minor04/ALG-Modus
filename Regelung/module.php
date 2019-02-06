@@ -93,7 +93,7 @@ class ALGModus extends IPSModule
 				//$prog = getValue($this->GetIDForIdent("prog"));
 				//$sw = getValue($this->GetIDForIdent("SW"));
 				//$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
-				$this->Test();
+				$this->Demo();
            		}
 
         }
@@ -215,7 +215,7 @@ class ALGModus extends IPSModule
 	
 	
 	
-	public function Test(){
+	public function Demo(){
 		
 		//$this->EnableAction("SW_Abs");
 		
