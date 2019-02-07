@@ -94,7 +94,7 @@ class ALGModus extends IPSModule
 				//$prog = getValue($this->GetIDForIdent("prog"));
 				//$sw = getValue($this->GetIDForIdent("SW"));
 				//$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
-				$this->Demo();
+				$this->ALGAuswahl();
            		}
 
         }
@@ -113,6 +113,7 @@ class ALGModus extends IPSModule
 				$mod = $value;
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = getValue($this->GetIDForIdent("MD"));
+				$zp = getValue($this->GetIDForIdent("ZP"));
 				//$abw = getValue($this->GetIDForIdent("Abw"));
 				$this->ALGAuswahl();
             		break;
@@ -121,6 +122,7 @@ class ALGModus extends IPSModule
 				$mod = getValue($this->GetIDForIdent("Mod"));
 				$hz = $value;
 				$md = getValue($this->GetIDForIdent("MD"));
+				$zp = getValue($this->GetIDForIdent("ZP"));
 				//$abw = getValue($this->GetIDForIdent("Abw"));
 				$this->ALGAuswahl();
             		break;
