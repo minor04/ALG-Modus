@@ -117,6 +117,14 @@ class ALGModus extends IPSModule
 				$this->ALGAuswahl();
             		break;
 				
+			case 'HZ':
+				$mod = getValue($this->GetIDForIdent("Mod"));
+				$hz = $value;
+				$md = getValue($this->GetIDForIdent("MD"));
+				//$abw = getValue($this->GetIDForIdent("Abw"));
+				$this->ALGAuswahl();
+            		break;
+				
         	}
 		
         $this->SetValue($key, $value);	
@@ -155,7 +163,7 @@ class ALGModus extends IPSModule
 	
 	public function ALGAuswahl(){
 		
-	global $mod;
+	global $mod, $hz;
 
 		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
@@ -175,6 +183,13 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($this->GetIDForIdent("HZ"), false);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
+			
+			if($hz == true){
+				SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+			}
+			else{
+				SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+			}
 			//echo "Hand";
 		}
 		else if($mod == 4){
