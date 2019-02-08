@@ -77,7 +77,7 @@ class ALGModus extends IPSModule
         	}
 	
 	        public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-		//global $sws, $zp_conf, $sws_abw, $abw, $prog, $sw, $sw_abs;
+		global $mod, $hz, $md, $zp;
             		$triggerAlBWM_01 = $this->ReadPropertyInteger("AlBWM_01");
             		$triggerAlBWM_02 = $this->ReadPropertyInteger("AlBWM_02");
             		$triggerAlBWM_03 = $this->ReadPropertyInteger("AlBWM_03");
@@ -113,7 +113,7 @@ class ALGModus extends IPSModule
         */
 	
 	public function RequestAction($key, $value){
-		global $mod, $hz, $md;
+		global $mod, $hz, $md, $zp;
         	switch ($key) {
         		case 'Mod':
 				$mod = $value;
