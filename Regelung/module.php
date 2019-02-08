@@ -241,7 +241,7 @@ class ALGModus extends IPSModule
 				//SetValue($this->GetIDForIdent("Mod"), 1);
 			//}
 			//echo "Hand";
-		}
+		//}
 		else{
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
