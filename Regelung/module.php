@@ -178,6 +178,9 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
+			
+			
+			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 			//echo "Aus";
 		}
 		else if($mod == 3){
@@ -199,6 +202,9 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($this->GetIDForIdent("HZ"), false);
 			IPS_SetHidden($VariabelID_Ab, false);
 			IPS_SetHidden($VariabelID_An, false);
+			
+			
+			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 			//echo "Hand";
 		}
 		else{
@@ -206,6 +212,8 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
+			
+			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 		}
 		
 	}
