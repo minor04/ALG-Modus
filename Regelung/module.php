@@ -38,7 +38,8 @@ class ALGModus extends IPSModule
 			$this->RegisterPropertyInteger("AlBWM_02", 0);
 			$this->RegisterPropertyInteger("AlBWM_03", 0);
 			$this->RegisterPropertyInteger("AlBWM_04", 0);
-			$this->RegisterPropertyInteger("AlBWM_05", 0);			
+			$this->RegisterPropertyInteger("AlBWM_05", 0);
+			$this->RegisterPropertyInteger("TrigZP", 0);
 			
 			$this->RegisterPropertyInteger("ALG_HE", 0);
 			//$this->RegisterPropertyInteger("UpdateWeatherInterval", 30);
@@ -67,6 +68,9 @@ class ALGModus extends IPSModule
 			$triggerAlBWM_05 = $this->ReadPropertyInteger("AlBWM_05");
             		$this->RegisterMessage($triggerAlBWM_05, 10603 /* VM_UPDATE */);
 			
+			$triggerZP = $this->ReadPropertyInteger("TrigZP");
+            		$this->RegisterMessage($triggerZP, 10603 /* VM_UPDATE */);
+			
 			//Standartaktion Aktivieren
 			$this->VariabelStandartaktion();
 			
@@ -79,6 +83,7 @@ class ALGModus extends IPSModule
             		$triggerAlBWM_03 = $this->ReadPropertyInteger("AlBWM_03");
             		$triggerAlBWM_04 = $this->ReadPropertyInteger("AlBWM_04");
             		$triggerAlBWM_05 = $this->ReadPropertyInteger("AlBWM_05");
+			$triggerZP = $this->ReadPropertyInteger("TrigZP");
 	
 			$triggerMod = $this->ReadPropertyInteger("Mod");
 			
@@ -90,7 +95,7 @@ class ALGModus extends IPSModule
 				$this->Meldung();
            		}
 			
-			if (($SenderID == $triggerMod) && ($Message == 10603)){// && (boolval($Data[0]))){
+			if (($SenderID == $triggerMod or $triggerZP) && ($Message == 10603)){// && (boolval($Data[0]))){
 				//$prog = getValue($this->GetIDForIdent("prog"));
 				//$sw = getValue($this->GetIDForIdent("SW"));
 				//$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
