@@ -1,6 +1,7 @@
 <?
 
-$mod = 0;
+$mod = 1;
+$prog = 1
 $hz = 0;
 $md = 0;
 $zp = 0;
@@ -16,17 +17,26 @@ class ALGModus extends IPSModule
 			if (!IPS_VariableProfileExists("ALG-Modus")) {
 			
 				IPS_CreateVariableProfile("ALG-Modus", 1); // 0 boolean, 1 int, 2 float, 3 string,
-				IPS_SetVariableProfileValues("ALG-Modus", 1, 3, 0);
+				IPS_SetVariableProfileValues("ALG-Modus", 1, 2, 0);
 				IPS_SetVariableProfileDigits("ALG-Modus", 0);
-				IPS_SetVariableProfileAssociation("ALG-Modus", 1, "Anwesend", "", 0xFFFFFF);
-				IPS_SetVariableProfileAssociation("ALG-Modus", 2, "Party", "", 0xFFFFFF);
-				IPS_SetVariableProfileAssociation("ALG-Modus", 3, "Abwesend", "", 0xFFFFFF);
-				IPS_SetVariableProfileAssociation("ALG-Modus", 4, "Auto", "", 0xFFFFFF);
+				IPS_SetVariableProfileAssociation("ALG-Modus", 1, "Hand", "", 0xFFFFFF);
+				IPS_SetVariableProfileAssociation("ALG-Modus", 2, "Auto", "", 0xFFFFFF);
+			}
+			
+			if (!IPS_VariableProfileExists("ALG_Programm")) {
+			
+				IPS_CreateVariableProfile("ALG_Programm", 1); // 0 boolean, 1 int, 2 float, 3 string,
+				IPS_SetVariableProfileValues("ALG_Programm", 1, 3, 0);
+				IPS_SetVariableProfileDigits("ALG_Programm", 0);
+				IPS_SetVariableProfileAssociation("ALG_Programm", 1, "Anwesend", "", 0xFFFFFF);
+				IPS_SetVariableProfileAssociation("ALG_Programm", 2, "Party", "", 0xFFFFFF);
+				IPS_SetVariableProfileAssociation("ALG_Programm", 3, "Abwesend", "", 0xFFFFFF);
 			}
 		
 			
 			//___In_IPS_zurverfügungstehende_Variabeln_______________________________________________
 			$this->RegisterVariableInteger("Mod", "Modus", "ALG-Modus", 1);
+			$this->RegisterVariableInteger("Prog", "Programm", "ALG_Programm", 2);
 			$this->RegisterVariableBoolean("HZ", "Heizung", "~Switch", 5);
 			$this->RegisterVariableBoolean("MD", "Meldung", "~Switch", 6);
 			$this->RegisterVariableBoolean("ZP", "AutoZSP", "~Switch", 7);
@@ -113,10 +123,21 @@ class ALGModus extends IPSModule
         */
 	
 	public function RequestAction($key, $value){
-		global $mod, $hz, $md, $zp;
+		global $mod, $prog, $hz, $md, $zp;
         	switch ($key) {
         		case 'Mod':
 				$mod = $value;
+				$prog = getValue($this->GetIDForIdent("Prog"));
+				$hz = getValue($this->GetIDForIdent("HZ"));
+				$md = getValue($this->GetIDForIdent("MD"));
+				$zp = getValue($this->GetIDForIdent("ZP"));
+				//$abw = getValue($this->GetIDForIdent("Abw"));
+				$this->ALGAuswahl();
+            		break;
+				
+        		case 'Prog':
+				$mod = getValue($this->GetIDForIdent("Mod"));
+				$prog = $value;
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = getValue($this->GetIDForIdent("MD"));
 				$zp = getValue($this->GetIDForIdent("ZP"));
@@ -126,6 +147,7 @@ class ALGModus extends IPSModule
 				
 			case 'HZ':
 				$mod = getValue($this->GetIDForIdent("Mod"));
+				$prog = getValue($this->GetIDForIdent("Prog"));
 				$hz = $value;
 				$md = getValue($this->GetIDForIdent("MD"));
 				$zp = getValue($this->GetIDForIdent("ZP"));
@@ -173,14 +195,14 @@ class ALGModus extends IPSModule
 	
 	public function ALGAuswahl(){
 		
-	global $mod, $hz, $zp;
+	global $mod, $prog, $hz, $zp;
 
 		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
 		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
 		$VariabelID_An = IPS_GetEventIDByName("Bis", $InstanzID);
 		
-		if($mod == 2){
+		if($prog == 2){
 			//SetValue($this->GetIDForIdent("prog"), 0);
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
@@ -191,7 +213,7 @@ class ALGModus extends IPSModule
 			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 			//echo "Aus";
 		}
-		else if($mod == 3){
+		else if($prog == 3){
 			IPS_SetHidden($this->GetIDForIdent("MD"), false);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), false);
 			IPS_SetHidden($VariabelID_Ab, true);
@@ -205,19 +227,19 @@ class ALGModus extends IPSModule
 			}
 			//echo "Hand";
 		}
-		else if($mod == 4){
-			IPS_SetHidden($this->GetIDForIdent("MD"), false);
-			IPS_SetHidden($this->GetIDForIdent("HZ"), false);
-			IPS_SetHidden($VariabelID_Ab, false);
-			IPS_SetHidden($VariabelID_An, false);
+		//else if($mod == 4){
+			//IPS_SetHidden($this->GetIDForIdent("MD"), false);
+			//IPS_SetHidden($this->GetIDForIdent("HZ"), false);
+			//IPS_SetHidden($VariabelID_Ab, false);
+			//IPS_SetHidden($VariabelID_An, false);
 			
-			if($hz == true && $zp == true){
-				SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-			}
-			else{
-				SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-				SetValue($this->GetIDForIdent("Mod"), 1);
-			}
+			//if($hz == true && $zp == true){
+				//SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+			//}
+			//else{
+				//SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+				//SetValue($this->GetIDForIdent("Mod"), 1);
+			//}
 			//echo "Hand";
 		}
 		else{
