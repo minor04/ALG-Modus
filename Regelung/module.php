@@ -216,7 +216,7 @@ class ALGModus extends IPSModule
 			}
 			else{
 				SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-				SetValue($mod, 1);
+				SetValue($this->ReadPropertyInteger("Mod"), 1);
 			}
 			//echo "Hand";
 		}
