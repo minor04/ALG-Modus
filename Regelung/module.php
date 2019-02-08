@@ -96,9 +96,10 @@ class ALGModus extends IPSModule
            		}
 			
 			if (($SenderID == $triggerMod or $triggerZP) && ($Message == 10603)){// && (boolval($Data[0]))){
-				//$prog = getValue($this->GetIDForIdent("prog"));
-				//$sw = getValue($this->GetIDForIdent("SW"));
-				//$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
+				$mod = getValue($this->GetIDForIdent("Mod"));
+				$hz = getValue($this->GetIDForIdent("HZ"));
+				$md = getValue($this->GetIDForIdent("MD"));
+				$zp = getValue($this->GetIDForIdent("ZP"));
 				$this->ALGAuswahl();
            		}
 
@@ -145,6 +146,8 @@ class ALGModus extends IPSModule
 		$this->EnableAction("Mod");
 		$this->EnableAction("MD");
 		$this->EnableAction("HZ");
+		
+		IPS_SetHidden($ZP, true);
 		
 	}
 		
