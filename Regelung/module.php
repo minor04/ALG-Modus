@@ -93,10 +93,7 @@ class ALGModus extends IPSModule
             		$triggerAlBWM_03 = $this->ReadPropertyInteger("AlBWM_03");
             		$triggerAlBWM_04 = $this->ReadPropertyInteger("AlBWM_04");
             		$triggerAlBWM_05 = $this->ReadPropertyInteger("AlBWM_05");
-			$triggerZP = $this->ReadPropertyInteger("TrigZP");
-	
-			$triggerMod = $this->ReadPropertyInteger("Mod");
-			
+			$triggerZP = $this->ReadPropertyInteger("TrigZP");			
 			
 			if (($SenderID == $triggerAlBWM_01 or $triggerAlBWM_02) && ($Message == 10603)){// && (boolval($Data[0]))){
 				//$prog = getValue($this->GetIDForIdent("prog"));
@@ -105,13 +102,13 @@ class ALGModus extends IPSModule
 				$this->Meldung();
            		}
 			
-			if (($SenderID == $triggerMod or $triggerZP) && ($Message == 10603)){// && (boolval($Data[0]))){
+			if (($SenderID == $triggerZP) && ($Message == 10603)){// && (boolval($Data[0]))){
 				$mod = getValue($this->GetIDForIdent("Mod"));
 				$prog = getValue($this->GetIDForIdent("Prog"));
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = getValue($this->GetIDForIdent("MD"));
 				$zp = getValue($this->GetIDForIdent("ZP"));
-				$this->ALGAuswahl();
+				$this->HZ_Auto();
            		}
 
         }
@@ -243,17 +240,6 @@ class ALGModus extends IPSModule
 				IPS_SetHidden($VariabelID_Ab, false);
 				IPS_SetHidden($VariabelID_An, false);
 				
-				if($hz == true && $zp == true){
-					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-				}
-				else{
-					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-					//IPS_SetHidden($this->GetIDForIdent("MD"), true);
-					//IPS_SetHidden($this->GetIDForIdent("HZ"), true);
-					//IPS_SetHidden($VariabelID_Ab, true);
-					//IPS_SetHidden($VariabelID_An, true);
-					SetValue($this->GetIDForIdent("Prog"), 1);
-				}
 			}
 		}
 
@@ -267,12 +253,33 @@ class ALGModus extends IPSModule
 		}
 		
 	}
+		
+	public function HZ_Auto(){
+		
+	global $mod, $prog, $hz, $md, $zp;		
+		
+		if($prog == 3 && $hz == true && $zp == true){
+			SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+		}
+		else{
+			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+			IPS_SetHidden($this->GetIDForIdent("MD"), true);
+			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
+			IPS_SetHidden($VariabelID_Ab, true);
+			IPS_SetHidden($VariabelID_An, true);
+			SetValue($this->GetIDForIdent("Prog"), 1);
+		}
+		
+	}
+		
 	
 	public function Meldung(){
 			
 		//Meldung mus gem. Notification erstellt werden
 		
 	}
+	
+		
 	
 	public function ALGHeizung(){
 	
