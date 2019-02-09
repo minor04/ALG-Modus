@@ -2,9 +2,10 @@
 
 $mod = 1;
 $prog = 1;
-$hz = 0;
-$md = 0;
-$zp = 0;
+$hz = true;
+$md = true;
+$zp = false;
+$pa = false;
 
 class ALGModus extends IPSModule
 	{
@@ -40,8 +41,7 @@ class ALGModus extends IPSModule
 			$this->RegisterVariableBoolean("HZ", "Heizung", "~Switch", 5);
 			$this->RegisterVariableBoolean("MD", "Meldung", "~Switch", 6);
 			$this->RegisterVariableBoolean("ZP", "AutoZSP", "~Switch", 7);
-			//$this->RegisterVariableFloat("SW", "Sollwert", "~Temperature.Room", 3);
-			//$this->RegisterVariableBoolean("ZP_Conf", "ZP_Confort", "~Switch", 11);
+			$this->RegisterVariableBoolean("Pa", "Party", "~Switch", 8);
 			
 			//___Modulvariabeln______________________________________________________________________
 			$this->RegisterPropertyInteger("AlBWM_01", 0);
@@ -108,6 +108,7 @@ class ALGModus extends IPSModule
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = getValue($this->GetIDForIdent("MD"));
 				$zp = getValue($this->GetIDForIdent("ZP"));
+				$pa = getValue($this->GetIDForIdent("Pa"));
 				$this->Auto();
            		}
 
@@ -121,7 +122,7 @@ class ALGModus extends IPSModule
         */
 	
 	public function RequestAction($key, $value){
-		global $mod, $prog, $hz, $md, $zp;
+		global $mod, $prog, $hz, $md, $zp ,$pa;
         	switch ($key) {
         		case 'Mod':
 				$mod = $value;
@@ -129,6 +130,7 @@ class ALGModus extends IPSModule
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = getValue($this->GetIDForIdent("MD"));
 				$zp = getValue($this->GetIDForIdent("ZP"));
+				$pa = getValue($this->GetIDForIdent("Pa"));
 				$this->ALGAuswahl();
             		break;
 				
@@ -138,7 +140,7 @@ class ALGModus extends IPSModule
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = getValue($this->GetIDForIdent("MD"));
 				$zp = getValue($this->GetIDForIdent("ZP"));
-				//$abw = getValue($this->GetIDForIdent("Abw"));
+				$pa = getValue($this->GetIDForIdent("Pa"));
 				$this->ALGAuswahl();
             		break;
 				
@@ -148,7 +150,6 @@ class ALGModus extends IPSModule
 				$hz = $value;
 				$md = getValue($this->GetIDForIdent("MD"));
 				$zp = getValue($this->GetIDForIdent("ZP"));
-				//$abw = getValue($this->GetIDForIdent("Abw"));
 				$this->ALGAuswahl();
             		break;
 				
@@ -158,7 +159,6 @@ class ALGModus extends IPSModule
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = $value;
 				$zp = getValue($this->GetIDForIdent("ZP"));
-				//$abw = getValue($this->GetIDForIdent("Abw"));
 				$this->ALGAuswahl();
             		break;
 				
@@ -203,7 +203,7 @@ class ALGModus extends IPSModule
 	
 	public function ALGAuswahl(){
 		
-	global $mod, $prog, $hz, $md, $zp;
+	global $mod, $prog, $hz, $md, $zp ,$pa;
 
 		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
@@ -215,6 +215,16 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
+			
+			if($mod == 1){
+				SetValue($this->GetIDForIdent("Pa"), true);
+			}
+					
+			if($mod == 2){
+				SetValue($this->GetIDForIdent("Pa"), false);
+				IPS_SetHidden($VariabelID_Ab, false);
+				IPS_SetHidden($VariabelID_An, false);
+			}
 			
 			
 			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
@@ -262,15 +272,17 @@ class ALGModus extends IPSModule
 		
 	public function Auto(){
 		
-	global $mod, $prog, $hz, $md, $zp;	
+		global $mod, $prog, $hz, $md, $zp ,$pa;	
 		
 		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
 		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
 		$VariabelID_An = IPS_GetEventIDByName("Bis", $InstanzID);
 		
-		if($prog == 3 && $zp == true){
-			
+		if($zp == true){
+			if($prog == 2){
+				SetValue($this->GetIDForIdent("Pa"), true);
+			}
 			if($prog == 3 && $hz == true){
 				SetValue($this->ReadPropertyInteger("ALG_HE"), true);
 			}
@@ -285,6 +297,7 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 			SetValue($this->GetIDForIdent("Prog"), 1);
+			SetValue($this->GetIDForIdent("Pa"), false);
 		}
 		
 	}
