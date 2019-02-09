@@ -87,7 +87,7 @@ class ALGModus extends IPSModule
         	}
 	
 	        public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-		global $mod, $hz, $md, $zp;
+		global $mod, $prog, $hz, $md, $zp;
             		$triggerAlBWM_01 = $this->ReadPropertyInteger("AlBWM_01");
             		$triggerAlBWM_02 = $this->ReadPropertyInteger("AlBWM_02");
             		$triggerAlBWM_03 = $this->ReadPropertyInteger("AlBWM_03");
@@ -107,6 +107,7 @@ class ALGModus extends IPSModule
 			
 			if (($SenderID == $triggerMod or $triggerZP) && ($Message == 10603)){// && (boolval($Data[0]))){
 				$mod = getValue($this->GetIDForIdent("Mod"));
+				$prog = getValue($this->GetIDForIdent("Prog"));
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = getValue($this->GetIDForIdent("MD"));
 				$zp = getValue($this->GetIDForIdent("ZP"));
@@ -131,7 +132,6 @@ class ALGModus extends IPSModule
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = getValue($this->GetIDForIdent("MD"));
 				$zp = getValue($this->GetIDForIdent("ZP"));
-				//$abw = getValue($this->GetIDForIdent("Abw"));
 				$this->ALGAuswahl();
             		break;
 				
@@ -150,6 +150,16 @@ class ALGModus extends IPSModule
 				$prog = getValue($this->GetIDForIdent("Prog"));
 				$hz = $value;
 				$md = getValue($this->GetIDForIdent("MD"));
+				$zp = getValue($this->GetIDForIdent("ZP"));
+				//$abw = getValue($this->GetIDForIdent("Abw"));
+				$this->ALGAuswahl();
+            		break;
+				
+			case 'MD':
+				$mod = getValue($this->GetIDForIdent("Mod"));
+				$prog = getValue($this->GetIDForIdent("Prog"));
+				$hz = getValue($this->GetIDForIdent("HZ"));
+				$md = $value;
 				$zp = getValue($this->GetIDForIdent("ZP"));
 				//$abw = getValue($this->GetIDForIdent("Abw"));
 				$this->ALGAuswahl();
@@ -195,7 +205,7 @@ class ALGModus extends IPSModule
 	
 	public function ALGAuswahl(){
 		
-	global $mod, $prog, $hz, $zp;
+	global global $mod, $prog, $hz, $md, $zp;
 
 		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
@@ -203,7 +213,6 @@ class ALGModus extends IPSModule
 		$VariabelID_An = IPS_GetEventIDByName("Bis", $InstanzID);
 		
 		if($prog == 2){
-			//SetValue($this->GetIDForIdent("prog"), 0);
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
