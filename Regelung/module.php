@@ -206,7 +206,7 @@ class ALGModus extends IPSModule
 	
 	public function ALGAuswahl(){
 		
-	global global $mod, $prog, $hz, $md, $zp;
+	global $mod, $prog, $hz, $md, $zp;
 
 		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
