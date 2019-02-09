@@ -256,7 +256,12 @@ class ALGModus extends IPSModule
 		
 	public function HZ_Auto(){
 		
-	global $mod, $prog, $hz, $md, $zp;		
+	global $mod, $prog, $hz, $md, $zp;	
+		
+		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
+		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
+		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
+		$VariabelID_An = IPS_GetEventIDByName("Bis", $InstanzID);
 		
 		if($prog == 3 && $hz == true && $zp == true){
 			SetValue($this->ReadPropertyInteger("ALG_HE"), true);
