@@ -240,8 +240,13 @@ class ALGModus extends IPSModule
 				IPS_SetHidden($VariabelID_Ab, false);
 				IPS_SetHidden($VariabelID_An, false);
 				
+				if($hz == true && $zp == true){
+					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+				}
+				else{
+					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+				}
 			}
-		}
 
 		else{
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
