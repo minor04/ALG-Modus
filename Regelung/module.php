@@ -108,7 +108,7 @@ class ALGModus extends IPSModule
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = getValue($this->GetIDForIdent("MD"));
 				$zp = getValue($this->GetIDForIdent("ZP"));
-				$this->HZ_Auto();
+				$this->Auto();
            		}
 
         }
@@ -260,7 +260,7 @@ class ALGModus extends IPSModule
 		
 	}
 		
-	public function HZ_Auto(){
+	public function Auto(){
 		
 	global $mod, $prog, $hz, $md, $zp;	
 		
@@ -269,8 +269,14 @@ class ALGModus extends IPSModule
 		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
 		$VariabelID_An = IPS_GetEventIDByName("Bis", $InstanzID);
 		
-		if($prog == 3 && $hz == true && $zp == true){
-			SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+		if($prog == 3 && $zp == true){
+			
+			if($prog == 3 && $hz == true){
+				SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+			}
+			if($prog == 3 && $md == true){
+				//SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+			}
 		}
 		else{
 			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
