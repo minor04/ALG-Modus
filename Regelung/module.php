@@ -178,6 +178,7 @@ class ALGModus extends IPSModule
 		$this->EnableAction("HZ");
 		
 		IPS_SetHidden($this->GetIDForIdent("ZP"), true);
+		IPS_SetHidden($this->GetIDForIdent("Pa"), true);
 		
 	}
 		
