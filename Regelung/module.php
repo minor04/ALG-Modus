@@ -234,7 +234,7 @@ class ALGModus extends IPSModule
 					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 				}
 			}
-			
+					
 			if($mod == 2){
 				
 				IPS_SetHidden($VariabelID_Ab, false);
@@ -247,6 +247,7 @@ class ALGModus extends IPSModule
 					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 				}
 			}
+		}
 
 		else{
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
