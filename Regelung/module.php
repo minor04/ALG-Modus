@@ -176,6 +176,7 @@ class ALGModus extends IPSModule
 	public function VariabelStandartaktion(){
 		
 		$this->EnableAction("Mod");
+		$this->EnableAction("Prog");
 		$this->EnableAction("MD");
 		$this->EnableAction("HZ");
 		
