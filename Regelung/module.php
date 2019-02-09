@@ -248,10 +248,10 @@ class ALGModus extends IPSModule
 				}
 				else{
 					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-					IPS_SetHidden($this->GetIDForIdent("MD"), true);
-					IPS_SetHidden($this->GetIDForIdent("HZ"), true);
-					IPS_SetHidden($VariabelID_Ab, true);
-					IPS_SetHidden($VariabelID_An, true);
+					//IPS_SetHidden($this->GetIDForIdent("MD"), true);
+					//IPS_SetHidden($this->GetIDForIdent("HZ"), true);
+					//IPS_SetHidden($VariabelID_Ab, true);
+					//IPS_SetHidden($VariabelID_An, true);
 					SetValue($this->GetIDForIdent("Prog"), 1);
 				}
 			}
@@ -262,7 +262,7 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
-			
+
 			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 		}
 		
