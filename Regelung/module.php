@@ -306,7 +306,7 @@ class ALGModus extends IPSModule
 	
 	public function Meldung(){
 			
-		//Meldung mus gem. Notification erstellt werden
+		WFC_PushNotification(42837 /*[WebFront]*/, 'Warnung', 'Test', '', 0);
 		
 	}
 	
