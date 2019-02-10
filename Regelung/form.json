@@ -14,6 +14,6 @@
 		"actions":
 	[
 		{ "type": "Button", "label": "ZP Anlegen", "onClick": "MIN_ZeitPro($id);" },
-		{ "type": "Button", "label": "Test", "onClick": "MIN_Demo($id);" }
+		{ "type": "Button", "label": "Test", "onClick": "MIN_Meldung($id);" }
 	]
 }
