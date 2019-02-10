@@ -38,7 +38,7 @@ class ALGModus extends IPSModule
 			//___In_IPS_zurverfügungstehende_Variabeln_______________________________________________
 			$this->RegisterVariableInteger("Mod", "Modus", "ALG-Modus", 1);
 			$this->RegisterVariableInteger("Prog", "Programm", "ALG_Programm", 2);
-			$this->RegisterVariableBoolean("HZ", "Heizung", "~Switch", 5);
+			$this->RegisterVariableBoolean("HZ", "Heizung Abwesend", "~Switch", 5);
 			$this->RegisterVariableBoolean("MD", "Meldung", "~Switch", 6);
 			$this->RegisterVariableBoolean("ZP", "AutoZSP", "~Switch", 7);
 			$this->RegisterVariableBoolean("Pa", "Party", "~Switch", 8);
