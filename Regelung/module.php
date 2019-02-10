@@ -33,14 +33,24 @@ class ALGModus extends IPSModule
 				IPS_SetVariableProfileAssociation("ALG_Programm", 2, "Party", "", 0xFFFFFF);
 				IPS_SetVariableProfileAssociation("ALG_Programm", 3, "Abwesend", "", 0xFFFFFF);
 			}
+			
+			if (!IPS_VariableProfileExists("ALG_Akt")) {
+			
+				IPS_CreateVariableProfile("ALG_Akt", 0); // 0 boolean, 1 int, 2 float, 3 string,
+				//IPS_SetVariableProfileValues("ALG_Programm", 1, 3, 0);
+				//IPS_SetVariableProfileDigits("ALG_Programm", 0);
+				IPS_SetVariableProfileAssociation("ALG_Akt", false, "Deaktiv", "", 0xFFFFFF);
+				IPS_SetVariableProfileAssociation("ALG_Akt", true, "Aktiv", "", 0xFFFFFF);
+				
+			}
 		
 			
 			//___In_IPS_zurverfügungstehende_Variabeln_______________________________________________
 			$this->RegisterVariableInteger("Mod", "Modus", "ALG-Modus", 1);
 			$this->RegisterVariableInteger("Prog", "Programm", "ALG_Programm", 2);
 			$this->RegisterVariableBoolean("HZ", "Heizung Abwesend", "~Switch", 5);
-			$this->RegisterVariableBoolean("MD", "Meldung", "~Switch", 6);
-			$this->RegisterVariableBoolean("ZP", "AutoZSP", "~Switch", 7);
+			$this->RegisterVariableBoolean("MD", "Meldung", "ALG_Akt", 6);
+			$this->RegisterVariableBoolean("ZP", "AutoZSP", "ALG_Akt", 7);
 			$this->RegisterVariableBoolean("Pa", "Party", "~Switch", 8);
 			
 			//___Modulvariabeln______________________________________________________________________
