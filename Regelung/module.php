@@ -185,8 +185,8 @@ class ALGModus extends IPSModule
 	
 	public function ZeitPro(){
 			
-		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
-		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
+		$KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
+		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Zentral);
 				
 		$EreignisID_von =IPS_CreateEvent(1);
 		IPS_SetName($EreignisID_von, "Von");
@@ -206,8 +206,8 @@ class ALGModus extends IPSModule
 		
 	global $mod, $prog, $hz, $md, $zp ,$pa;
 
-		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
-		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
+		$KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
+		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Zentral);
 		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
 		$VariabelID_An = IPS_GetEventIDByName("Bis", $InstanzID);
 		
@@ -275,8 +275,8 @@ class ALGModus extends IPSModule
 		
 		global $mod, $prog, $hz, $md, $zp ,$pa;	
 		
-		$KategorieID_Settings = IPS_GetCategoryIDByName("Settings", 0);
-		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Settings);
+		$KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
+		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Zentral);
 		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
 		$VariabelID_An = IPS_GetEventIDByName("Bis", $InstanzID);
 		
