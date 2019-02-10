@@ -309,7 +309,7 @@ class ALGModus extends IPSModule
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Konfigurator Instanzen", 0);
 		$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
 			
-		WFC_PushNotification($this->GetIDForIdent("WebFront"), 'Warnung', 'Test', '', 0);
+		WFC_PushNotification(13905, 'Warnung', 'Test', '', 0);
 		
 	}
 	
