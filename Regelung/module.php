@@ -306,7 +306,7 @@ class ALGModus extends IPSModule
 	
 	public function Meldung(){
 			
-		WFC_PushNotification(42837 /*[WebFront]*/, 'Warnung', 'Test', '', 0);
+		WFC_PushNotification(13905 /*[WebFront]*/, 'Warnung', 'Test', '', 0);
 		
 	}
 	
