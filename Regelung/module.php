@@ -61,6 +61,8 @@ class ALGModus extends IPSModule
 			$this->RegisterPropertyInteger("TrigZP", 0);
 			
 			$this->RegisterPropertyInteger("ALG_HE", 0);
+			$this->RegisterPropertyBoolean("OpHei", true);
+			$this->RegisterPropertyBoolean("OpMeld", true);
 			//$this->RegisterPropertyInteger("UpdateWeatherInterval", 30);
 			//$this->RegisterPropertyString("APIkey", 0);
 
@@ -92,6 +94,9 @@ class ALGModus extends IPSModule
 			
 			//Standartaktion Aktivieren
 			$this->VariabelStandartaktion();
+			
+			//VaiabelOption Aktivieren
+			$this->VariabelOption();
 			
         	}
 	
@@ -189,6 +194,24 @@ class ALGModus extends IPSModule
 		IPS_SetHidden($this->GetIDForIdent("ZP"), true);
 		IPS_SetHidden($this->GetIDForIdent("Pa"), true);
 		
+	}
+	
+
+	public function VariabelOption(){
+		
+		if ($this->ReadPropertyBoolean("OpHei")){
+			IPS_SetHidden($this->GetIDForIdent("HZ"), false);
+		}
+		else{
+			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
+		}
+		
+		if ($this->ReadPropertyBoolean("OpMeld")){
+			IPS_SetHidden($this->GetIDForIdent("MD"), false);
+		}
+		else{
+			IPS_SetHidden($this->GetIDForIdent("MD"), true);
+		}
 	}
 		
 	
