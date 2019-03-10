@@ -94,9 +94,7 @@ class ALGModus extends IPSModule
 			
 			//Standartaktion Aktivieren
 			$this->VariabelStandartaktion();
-			
-			//VaiabelOption Aktivieren
-			$this->VariabelOption();
+
 			
         	}
 	
