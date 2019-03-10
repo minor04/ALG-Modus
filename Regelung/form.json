@@ -10,8 +10,8 @@
 		{ "type": "SelectVariable", "name": "TrigZP", "caption": "ZP Triger" },
 		{ "type": "Label", "label": "Outputs" },
 		{ "type": "SelectVariable", "name": "ALG_HE", "caption": "ALG Heizung" },
-		{ "type": "CheckBox", "name": "Heizung", "caption": "Option Heizung Anzeigen" },
-		{ "type": "CheckBox", "name": "Meldung", "caption": "Option Meldung Anzeigen" }
+		{ "type": "CheckBox", "name": "OpHei", "caption": "Option Heizung Anzeigen" },
+		{ "type": "CheckBox", "name": "OpMeld", "caption": "Option Meldung Anzeigen" }
 	],
 		"actions":
 	[
