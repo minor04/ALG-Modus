@@ -9,7 +9,9 @@
 		{ "type": "SelectVariable", "name": "AlBWM_05", "caption": "BWM 05" },
 		{ "type": "SelectVariable", "name": "TrigZP", "caption": "ZP Triger" },
 		{ "type": "Label", "label": "Outputs" },
-		{ "type": "SelectVariable", "name": "ALG_HE", "caption": "ALG Heizung" }
+		{ "type": "SelectVariable", "name": "ALG_HE", "caption": "ALG Heizung" },
+		{ "type": "CheckBox", "name": "Heizung", "caption": "Option Heizung Anzeigen" },
+		{ "type": "CheckBox", "name": "Meldung", "caption": "Option Meldung Anzeigen" }
 	],
 		"actions":
 	[
