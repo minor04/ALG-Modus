@@ -223,12 +223,14 @@ class ALGModus extends IPSModule
 		IPS_SetParent($EreignisID_von, $InstanzID);
 		IPS_SetPosition($EreignisID_von, 10);
 		IPS_SetEventCyclic($EreignisID_von, 1 /* Täglich */ ,5,0,0,0,0);
+		IPS_SetEventActive($EreignisID_von, true);
 		
 		$EreignisID_bis =IPS_CreateEvent(1);
 		IPS_SetName($EreignisID_bis, "Bis");
 		IPS_SetParent($EreignisID_bis, $InstanzID);
 		IPS_SetPosition($EreignisID_bis, 11);
 		IPS_SetEventCyclic($EreignisID_bis, 1 /* Täglich */ ,5,0,0,0,0);
+		IPS_SetEventActive($EreignisID_bis, true);
 		
 	}
 	
