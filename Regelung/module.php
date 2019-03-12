@@ -1,6 +1,7 @@
 <?
 
 $mod = 1;
+$bear = 1;
 $prog = 1;
 $hz = true;
 $md = true;
@@ -22,6 +23,16 @@ class ALGModus extends IPSModule
 				IPS_SetVariableProfileDigits("ALG-Modus", 0);
 				IPS_SetVariableProfileAssociation("ALG-Modus", 1, "Hand", "", 0xFFFFFF);
 				IPS_SetVariableProfileAssociation("ALG-Modus", 2, "Auto", "", 0xFFFFFF);
+			}
+
+			if (!IPS_VariableProfileExists("SWS")) {
+			
+				IPS_CreateVariableProfile("SWS", 1); // 0 boolean, 1 int, 2 float, 3 string,
+				IPS_SetVariableProfileValues("SWS", 0, 2, 1);
+				IPS_SetVariableProfileDigits("SWS", 0);
+				IPS_SetVariableProfileAssociation("SWS", 0, "Aus", "", 0xFFFFFF);
+				IPS_SetVariableProfileAssociation("SWS", 1, "Auto", "", 0xFFFFFF);
+				IPS_SetVariableProfileAssociation("SWS", 2, "Hand", "", 0xFFFFFF);
 			}
 			
 			if (!IPS_VariableProfileExists("ALG_Programm")) {
@@ -46,7 +57,8 @@ class ALGModus extends IPSModule
 			
 			//___In_IPS_zurverfügungstehende_Variabeln_______________________________________________
 			$this->RegisterVariableInteger("Mod", "Modus", "ALG-Modus", 1);
-			$this->RegisterVariableInteger("Prog", "Programm", "ALG_Programm", 2);
+			$this->RegisterVariableInteger("BeAr", "Betriebsart", "SWS", 2);
+			$this->RegisterVariableInteger("Prog", "Programm", "ALG_Programm", 3);
 			$this->RegisterVariableBoolean("HZ", "Heizung Abwesend", "ALG_Akt", 5);
 			$this->RegisterVariableBoolean("MD", "Meldung", "ALG_Akt", 6);
 			$this->RegisterVariableBoolean("ZP", "AutoZSP", "~Switch", 7);
@@ -99,7 +111,7 @@ class ALGModus extends IPSModule
         	}
 	
 	        public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-		global $mod, $prog, $hz, $md, $zp;
+		global $mod, $bear, $prog, $hz, $md, $zp;
             		$triggerAlBWM_01 = $this->ReadPropertyInteger("AlBWM_01");
             		$triggerAlBWM_02 = $this->ReadPropertyInteger("AlBWM_02");
             		$triggerAlBWM_03 = $this->ReadPropertyInteger("AlBWM_03");
@@ -115,7 +127,8 @@ class ALGModus extends IPSModule
            		}
 			
 			if (($SenderID == $triggerZP) && ($Message == 10603)){// && (boolval($Data[0]))){
-				$mod = getValue($this->GetIDForIdent("Mod"));
+				//$mod = getValue($this->GetIDForIdent("Mod"));
+				$bear = getValue($this->GetIDForIdent("BeAr"));
 				$prog = getValue($this->GetIDForIdent("Prog"));
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = getValue($this->GetIDForIdent("MD"));
@@ -134,10 +147,12 @@ class ALGModus extends IPSModule
         */
 	
 	public function RequestAction($key, $value){
-		global $mod, $prog, $hz, $md, $zp ,$pa;
+		global $mod, $bear, $prog, $hz, $md, $zp ,$pa;
         	switch ($key) {
-        		case 'Mod':
-				$mod = $value;
+        		//case 'Mod':
+				//$mod = $value;
+        		case 'BeAr':
+				$bear = $value;
 				$prog = getValue($this->GetIDForIdent("Prog"));
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = getValue($this->GetIDForIdent("MD"));
@@ -147,7 +162,8 @@ class ALGModus extends IPSModule
             		break;
 				
         		case 'Prog':
-				$mod = getValue($this->GetIDForIdent("Mod"));
+				//$mod = getValue($this->GetIDForIdent("Mod"));
+				$bear = getValue($this->GetIDForIdent("BeAr"));
 				$prog = $value;
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = getValue($this->GetIDForIdent("MD"));
@@ -157,7 +173,8 @@ class ALGModus extends IPSModule
             		break;
 				
 			case 'HZ':
-				$mod = getValue($this->GetIDForIdent("Mod"));
+				//$mod = getValue($this->GetIDForIdent("Mod"));
+				$bear = getValue($this->GetIDForIdent("BeAr"));
 				$prog = getValue($this->GetIDForIdent("Prog"));
 				$hz = $value;
 				$md = getValue($this->GetIDForIdent("MD"));
@@ -166,7 +183,8 @@ class ALGModus extends IPSModule
             		break;
 				
 			case 'MD':
-				$mod = getValue($this->GetIDForIdent("Mod"));
+				//$mod = getValue($this->GetIDForIdent("Mod"));
+				$bear = getValue($this->GetIDForIdent("BeAr"));
 				$prog = getValue($this->GetIDForIdent("Prog"));
 				$hz = getValue($this->GetIDForIdent("HZ"));
 				$md = $value;
@@ -185,6 +203,7 @@ class ALGModus extends IPSModule
 	public function VariabelStandartaktion(){
 		
 		$this->EnableAction("Mod");
+		$this->EnableAction("BeAr");
 		$this->EnableAction("Prog");
 		$this->EnableAction("MD");
 		$this->EnableAction("HZ");
@@ -236,7 +255,7 @@ class ALGModus extends IPSModule
 	
 	public function ALGAuswahl(){
 		
-	global $mod, $prog, $hz, $md, $zp ,$pa;
+	global $mod, $bear, $prog, $hz, $md, $zp ,$pa;
 
 		$KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Zentral);
@@ -249,11 +268,13 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 			
-			if($mod == 1){
+			//if($mod == 1){
+			if($bear == 2){
 				SetValue($this->GetIDForIdent("Pa"), true);
 			}
 					
-			if($mod == 2){
+			//if($mod == 2){
+			if($bear == 1){
 				SetValue($this->GetIDForIdent("Pa"), false);
 				IPS_SetHidden($VariabelID_Ab, false);
 				IPS_SetHidden($VariabelID_An, false);
@@ -282,7 +303,8 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 			
-			if($mod == 1){
+			//if($mod == 1){
+			if($bear == 2){
 				if($hz == true){
 					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
 				}
@@ -291,8 +313,8 @@ class ALGModus extends IPSModule
 				}
 			}
 					
-			if($mod == 2){
-				
+			//if($mod == 2){
+			if($bear == 1){
 				IPS_SetHidden($VariabelID_Ab, false);
 				IPS_SetHidden($VariabelID_An, false);
 				
@@ -318,7 +340,7 @@ class ALGModus extends IPSModule
 		
 	public function Auto(){
 		
-		global $mod, $prog, $hz, $md, $zp ,$pa;	
+		global $mod, $bear, $prog, $hz, $md, $zp ,$pa;	
 		
 		$KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Zentral);
