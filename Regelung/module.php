@@ -402,7 +402,7 @@ class ALGModus extends IPSModule
 		//}
 
 		
-	}
+	//}
 		
     
 		   
