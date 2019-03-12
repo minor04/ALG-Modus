@@ -56,7 +56,7 @@ class ALGModus extends IPSModule
 		
 			
 			//___In_IPS_zurverfügungstehende_Variabeln_______________________________________________
-			$this->RegisterVariableInteger("Mod", "Modus", "ALG-Modus", 1);
+			$this->RegisterVariableInteger("Mod", "Modus", "ALG_Programm", 1);
 			$this->RegisterVariableInteger("BeAr", "Betriebsart", "SWS", 2);
 			$this->RegisterVariableInteger("Prog", "Programm", "ALG_Programm", 3);
 			$this->RegisterVariableBoolean("HZ", "Heizung Abwesend", "ALG_Akt", 5);
@@ -307,9 +307,13 @@ class ALGModus extends IPSModule
 			if($bear == 2){
 				if($hz == true){
 					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+					SetValue($this->ReadPropertyInteger("Mod"), 3);
+					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 				}
 				else{
 					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+					SetValue($this->ReadPropertyInteger("Mod"), 1);
+					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
 			}
 					
@@ -320,14 +324,19 @@ class ALGModus extends IPSModule
 				
 				if($hz == true && $zp == true){
 					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+					SetValue($this->ReadPropertyInteger("Mod"), 3);
+					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 				}
 				else{
 					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+					SetValue($this->ReadPropertyInteger("Mod"), 1);
+					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
 			}
 		}
 
 		else{
+			IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
@@ -353,6 +362,8 @@ class ALGModus extends IPSModule
 			}
 			if($prog == 3 && $hz == true){
 				SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+				SetValue($this->ReadPropertyInteger("Mod"), 3);
+				IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 			}
 			if($prog == 3 && $md == true){
 				//SetValue($this->ReadPropertyInteger("ALG_HE"), true);
@@ -366,6 +377,8 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($VariabelID_An, true);
 			SetValue($this->GetIDForIdent("Prog"), 1);
 			SetValue($this->GetIDForIdent("Pa"), false);
+			SetValue($this->ReadPropertyInteger("Mod"), 1);
+			IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 		}
 		
 	}
