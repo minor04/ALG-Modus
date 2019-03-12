@@ -262,6 +262,8 @@ class ALGModus extends IPSModule
 		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
 		$VariabelID_An = IPS_GetEventIDByName("Bis", $InstanzID);
 		
+		IPS_SetDisabled($this->GetIDForIdent("Mod"), true);
+		
 		if($prog == 2){
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
