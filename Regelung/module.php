@@ -309,13 +309,13 @@ class ALGModus extends IPSModule
 			if($bear == 2){
 				if($hz == true){
 					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-					SetValue($this->GetIDForIdent("prog"), 3);
+					SetValue($this->GetIDForIdent("Mod"), 3);
 					//SetValue($this->ReadPropertyInteger("Mod"), 3);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 				}
 				else{
 					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-					SetValue($this->GetIDForIdent("prog"), 1);
+					SetValue($this->GetIDForIdent("Mod"), 1);
 					//SetValue($this->ReadPropertyInteger("Mod"), 1);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
@@ -328,13 +328,13 @@ class ALGModus extends IPSModule
 				
 				if($hz == true && $zp == true){
 					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-					SetValue($this->GetIDForIdent("prog"), 3);
+					SetValue($this->GetIDForIdent("Mod"), 3);
 					//SetValue($this->ReadPropertyInteger("Mod"), 3);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 				}
 				else{
 					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-					SetValue($this->GetIDForIdent("prog"), 1);
+					SetValue($this->GetIDForIdent("Mod"), 1);
 					//SetValue($this->ReadPropertyInteger("Mod"), 1);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
@@ -368,7 +368,7 @@ class ALGModus extends IPSModule
 			}
 			if($prog == 3 && $hz == true){
 				SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-				SetValue($this->GetIDForIdent("prog"), 3);
+				SetValue($this->GetIDForIdent("Mod"), 3);
 				//SetValue($this->ReadPropertyInteger("Mod"), 3);
 				IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 			}
@@ -384,7 +384,7 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($VariabelID_An, true);
 			SetValue($this->GetIDForIdent("Prog"), 1);
 			SetValue($this->GetIDForIdent("Pa"), false);
-			SetValue($this->GetIDForIdent("prog"), 1);
+			SetValue($this->GetIDForIdent("Mod"), 1);
 			//SetValue($this->ReadPropertyInteger("Mod"), 3);
 			IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 		}
