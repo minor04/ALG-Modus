@@ -374,31 +374,32 @@ class ALGModus extends IPSModule
 	public function Meldung(){
 		
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Konfigurator Instanzen", 0);
-		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
+		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0); 42837
 			
 		//WFC_PushNotification(13905, 'Warnung', 'Test', '', 0);
+		WFC_PushNotification(42837, 'Warnung', 'Test', '', 0);
 		
 	}
 	
 		
 	
-	public function ALGHeizung(){
+	//public function ALGHeizung(){
 	
-	global $mod, $hz, $zp;
+	//global $mod, $hz, $zp;
 		
-		if($mod == 3 && $hz == true){
-			SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-		}
-		else{
-			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-		}
+		//if($mod == 3 && $hz == true){
+			//SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+		//}
+		//else{
+			//SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+		//}
 		
-		if($mod == 4 && $hz == true && $zp = true){
-			SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-		}
-		else{
-			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-		}
+		//if($mod == 4 && $hz == true && $zp = true){
+			//SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+		//}
+		//else{
+			//SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+		//}
 
 		
 	}
