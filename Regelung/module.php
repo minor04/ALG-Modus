@@ -399,7 +399,7 @@ class ALGModus extends IPSModule
 		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
 			
 		//WFC_PushNotification(13905, 'Warnung', 'Test', '', 0);
-		WFC_PushNotification(42837, 'Warnung', 'Test', '', 0);
+		WFC_PushNotification(42837, 'Warnung', 'Heey Du Stinker', '', 0);
 		//WFC_PushNotification($InstanzID, 'Warnung', 'Test', '', 0);
 		
 		
