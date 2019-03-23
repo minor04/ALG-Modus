@@ -18,11 +18,11 @@ class ALGModus extends IPSModule
 						
 			if (!IPS_VariableProfileExists("ALG_Modus")) {
 			
-				IPS_CreateVariableProfile("ALG-Modus", 1); // 0 boolean, 1 int, 2 float, 3 string,
-				IPS_SetVariableProfileValues("ALG-Modus", 1, 2, 0);
-				IPS_SetVariableProfileDigits("ALG-Modus", 0);
-				IPS_SetVariableProfileAssociation("ALG-Modus", 1, "Party", "", 0xFFFFFF);
-				IPS_SetVariableProfileAssociation("ALG-Modus", 2, "Abewesend", "", 0xFFF00);
+				IPS_CreateVariableProfile("ALG_Modus", 1); // 0 boolean, 1 int, 2 float, 3 string,
+				IPS_SetVariableProfileValues("ALG_Modus", 1, 2, 0);
+				IPS_SetVariableProfileDigits("ALG_Modus", 0);
+				IPS_SetVariableProfileAssociation("ALG_Modus", 1, "Party", "", 0xFFFFFF);
+				IPS_SetVariableProfileAssociation("ALG_Modus", 2, "Abewesend", "", 0xFFF00);
 			}
 
 			if (!IPS_VariableProfileExists("SWS-Modus")) {
@@ -308,7 +308,7 @@ class ALGModus extends IPSModule
 			if($bear == 2){
 				if($hz == true){
 					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-					SetValue($this->GetIDForIdent("Mod"), 3);
+					SetValue($this->GetIDForIdent("Mod"), 1);
 					//SetValue($this->ReadPropertyInteger("Mod"), 3);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 				}
@@ -327,13 +327,13 @@ class ALGModus extends IPSModule
 				
 				if($hz == true && $zp == true){
 					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-					SetValue($this->GetIDForIdent("Mod"), 3);
+					SetValue($this->GetIDForIdent("Mod"), 2);
 					//SetValue($this->ReadPropertyInteger("Mod"), 3);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 				}
 				else{
 					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-					SetValue($this->GetIDForIdent("Mod"), 1);
+					SetValue($this->GetIDForIdent("Mod"), 2);
 					//SetValue($this->ReadPropertyInteger("Mod"), 1);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
