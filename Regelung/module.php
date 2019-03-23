@@ -59,8 +59,8 @@ class ALGModus extends IPSModule
 			$this->RegisterVariableInteger("Mod", "Modus", "ALG_Programm", 1);
 			$this->RegisterVariableInteger("BeAr", "Betriebsart", "SWS", 2);
 			$this->RegisterVariableInteger("Prog", "Programm", "ALG_Programm", 3);
-			$this->RegisterVariableBoolean("HZ", "Heizung", "ALG_Akt", 5);
-			$this->RegisterVariableBoolean("MD", "Meldung", "ALG_Akt", 6);
+			$this->RegisterVariableBoolean("HZ", "- Heizung", "ALG_Akt", 5);
+			$this->RegisterVariableBoolean("MD", "- Meldung", "ALG_Akt", 6);
 			$this->RegisterVariableBoolean("ZP", "AutoZSP", "~Switch", 7);
 			$this->RegisterVariableBoolean("Pa", "Party", "~Switch", 8);
 			
