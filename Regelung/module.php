@@ -28,7 +28,7 @@ class ALGModus extends IPSModule
 			if (!IPS_VariableProfileExists("SWS")) {
 			
 				IPS_CreateVariableProfile("SWS", 1); // 0 boolean, 1 int, 2 float, 3 string,
-				IPS_SetVariableProfileValues("SWS", 0, 2, 1);
+				IPS_SetVariableProfileValues("SWS", 0, 2, 0);
 				IPS_SetVariableProfileDigits("SWS", 0);
 				IPS_SetVariableProfileAssociation("SWS", 0, "Aus", "", 0xFFFFFF);
 				IPS_SetVariableProfileAssociation("SWS", 1, "Auto", "", 0xFFFFFF);
@@ -59,7 +59,7 @@ class ALGModus extends IPSModule
 			$this->RegisterVariableInteger("Mod", "Modus", "ALG_Programm", 1);
 			$this->RegisterVariableInteger("BeAr", "Betriebsart", "SWS", 2);
 			$this->RegisterVariableInteger("Prog", "Programm", "ALG_Programm", 3);
-			$this->RegisterVariableBoolean("HZ", "Heizung Abwesend", "ALG_Akt", 5);
+			$this->RegisterVariableBoolean("HZ", "Heizung", "ALG_Akt", 5);
 			$this->RegisterVariableBoolean("MD", "Meldung", "ALG_Akt", 6);
 			$this->RegisterVariableBoolean("ZP", "AutoZSP", "~Switch", 7);
 			$this->RegisterVariableBoolean("Pa", "Party", "~Switch", 8);
