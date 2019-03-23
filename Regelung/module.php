@@ -201,7 +201,6 @@ class ALGModus extends IPSModule
 	
 	public function VariabelStandartaktion(){
 		
-		$this->EnableAction("Mod");
 		$this->EnableAction("BeAr");
 		$this->EnableAction("Prog");
 		$this->EnableAction("MD");
@@ -311,10 +310,11 @@ class ALGModus extends IPSModule
 					SetValue($this->GetIDForIdent("Mod"), 1);
 					//SetValue($this->ReadPropertyInteger("Mod"), 3);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
+					IPS_SetDisabled($this->GetIDForIdent("Mod"), false);
 				}
 				else{
 					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-					SetValue($this->GetIDForIdent("Mod"), 1);
+					//SetValue($this->GetIDForIdent("Mod"), 1);
 					//SetValue($this->ReadPropertyInteger("Mod"), 1);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
@@ -333,7 +333,7 @@ class ALGModus extends IPSModule
 				}
 				else{
 					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-					SetValue($this->GetIDForIdent("Mod"), 2);
+					//SetValue($this->GetIDForIdent("Mod"), 2);
 					//SetValue($this->ReadPropertyInteger("Mod"), 1);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
