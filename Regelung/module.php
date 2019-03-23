@@ -144,7 +144,7 @@ class ALGModus extends IPSModule
         * ABC_Calculate($id);
         *
         */
-	
+		
 	public function RequestAction($key, $value){
 		global $mod, $bear, $prog, $hz, $md, $zp ,$pa;
         	switch ($key) {
@@ -248,7 +248,6 @@ class ALGModus extends IPSModule
 		IPS_SetPosition($EreignisID_bis, 11);
 		IPS_SetEventCyclic($EreignisID_bis, 1 /* Täglich */ ,5,0,0,0,0);
 		IPS_SetEventActive($EreignisID_bis, true);
-		
 	}
 	
 	public function ALGAuswahl(){
@@ -260,71 +259,38 @@ class ALGModus extends IPSModule
 		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
 		$VariabelID_An = IPS_GetEventIDByName("Bis", $InstanzID);
 		
-		//IPS_SetDisabled($this->GetIDForIdent("Mod"), true);
-		
+		//__Party
 		if($prog == 2){
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 			
+			//___Auto
+			if($bear == 1){
+				IPS_SetHidden($VariabelID_Ab, false);
+				IPS_SetHidden($VariabelID_An, false);
+			}
+			
+			//___Ein
 			if($bear == 2){
 				SetValue($this->GetIDForIdent("Pa"), true);
 				SetValue($this->GetIDForIdent("Mod"), 1);
 				IPS_SetHidden($this->GetIDForIdent("Mod"), false);
-				
 			}
-					
-			if($bear == 1){
-				IPS_SetHidden($VariabelID_Ab, false);
-				IPS_SetHidden($VariabelID_An, false);
-				
-				//if($zp == true){
-					//SetValue($this->GetIDForIdent("Pa"), true);
-					//SetValue($this->GetIDForIdent("Mod"), 1);
-					//IPS_SetHidden($this->GetIDForIdent("Mod"), false);
-				//}
-				//else{
-					//SetValue($this->GetIDForIdent("Pa"), false);
-					//IPS_SetHidden($this->GetIDForIdent("Mod"), true);
-				//}
 
-			}
 			
 			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 		}
 		
+		//__Abwesend
 		else if($prog == 3){
 
-			//if ($this->ReadPropertyBoolean("OpHei")){
-				//IPS_SetHidden($this->GetIDForIdent("HZ"), false);
-			//}
-			//else{
-				//IPS_SetHidden($this->GetIDForIdent("HZ"), true);
-			//}
-		
-			//if ($this->ReadPropertyBoolean("OpMeld")){
-				//IPS_SetHidden($this->GetIDForIdent("MD"), false);
-			//}
-			//else{
-				//IPS_SetHidden($this->GetIDForIdent("MD"), true);
-			//}
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 			$this->VariabelOption();
 			
-			if($bear == 2){
-				if($hz == true){
-					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-					SetValue($this->GetIDForIdent("Mod"), 2);
-					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
-				}
-				else{
-					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
-				}
-			}
-					
+			//___Auto
 			if($bear == 1){
 				IPS_SetHidden($VariabelID_Ab, false);
 				IPS_SetHidden($VariabelID_An, false);
@@ -339,6 +305,20 @@ class ALGModus extends IPSModule
 					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
 			}
+	
+			//___Ein
+			if($bear == 2){
+				if($hz == true){
+					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+					SetValue($this->GetIDForIdent("Mod"), 2);
+					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
+				}
+				else{
+					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
+				}
+			}
+
 		}
 
 		else{
@@ -375,7 +355,7 @@ class ALGModus extends IPSModule
 				IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 			}
 			if($prog == 3 && $md == true){
-				//SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+				$this->Meldung();
 			}
 		}
 		else{
