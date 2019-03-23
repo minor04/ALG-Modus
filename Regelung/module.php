@@ -311,6 +311,7 @@ class ALGModus extends IPSModule
 			//}
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
+			$this->VariabelOption();
 			
 			if($bear == 2){
 				if($hz == true){
@@ -342,8 +343,8 @@ class ALGModus extends IPSModule
 
 		else{
 			IPS_SetHidden($this->GetIDForIdent("Mod"), true);
-			//IPS_SetHidden($this->GetIDForIdent("MD"), true);
-			//IPS_SetHidden($this->GetIDForIdent("HZ"), true);
+			IPS_SetHidden($this->GetIDForIdent("MD"), true);
+			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 
@@ -378,8 +379,8 @@ class ALGModus extends IPSModule
 		}
 		else{
 			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-			//IPS_SetHidden($this->GetIDForIdent("MD"), true);
-			//IPS_SetHidden($this->GetIDForIdent("HZ"), true);
+			IPS_SetHidden($this->GetIDForIdent("MD"), true);
+			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 			SetValue($this->GetIDForIdent("Prog"), 1);
