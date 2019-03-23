@@ -22,7 +22,7 @@ class ALGModus extends IPSModule
 				IPS_SetVariableProfileValues("ALG_Modus", 1, 2, 0);
 				IPS_SetVariableProfileDigits("ALG_Modus", 0);
 				IPS_SetVariableProfileAssociation("ALG_Modus", 1, "Party", "", 0xFFFFFF);
-				IPS_SetVariableProfileAssociation("ALG_Modus", 2, "Abewesend", "", 0xFFF00);
+				IPS_SetVariableProfileAssociation("ALG_Modus", 2, "Abewesend", "", 0xFF0000);
 			}
 
 			if (!IPS_VariableProfileExists("SWS-Modus")) {
@@ -268,7 +268,6 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 			
-			//if($mod == 1){
 			if($bear == 2){
 				SetValue($this->GetIDForIdent("Pa"), true);
 				SetValue($this->GetIDForIdent("Mod"), 1);
@@ -276,12 +275,20 @@ class ALGModus extends IPSModule
 				
 			}
 					
-			//if($mod == 2){
 			if($bear == 1){
-				SetValue($this->GetIDForIdent("Pa"), false);
-				IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				IPS_SetHidden($VariabelID_Ab, false);
 				IPS_SetHidden($VariabelID_An, false);
+				
+				if($zp == true){
+					SetValue($this->GetIDForIdent("Pa"), true);
+					SetValue($this->GetIDForIdent("Mod"), 1);
+					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
+				}
+				else{
+					SetValue($this->GetIDForIdent("Pa"), false);
+					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
+				}
+
 			}
 			
 			
@@ -289,8 +296,7 @@ class ALGModus extends IPSModule
 			//echo "Aus";
 		}
 		else if($prog == 3){
-			//IPS_SetHidden($this->GetIDForIdent("MD"), false);
-			//IPS_SetHidden($this->GetIDForIdent("HZ"), false);
+
 			if ($this->ReadPropertyBoolean("OpHei")){
 				IPS_SetHidden($this->GetIDForIdent("HZ"), false);
 			}
@@ -307,7 +313,6 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 			
-			//if($mod == 1){
 			if($bear == 2){
 				if($hz == true){
 					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
@@ -320,7 +325,6 @@ class ALGModus extends IPSModule
 				}
 			}
 					
-			//if($mod == 2){
 			if($bear == 1){
 				IPS_SetHidden($VariabelID_Ab, false);
 				IPS_SetHidden($VariabelID_An, false);
