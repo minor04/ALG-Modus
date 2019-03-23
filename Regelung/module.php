@@ -122,7 +122,7 @@ class ALGModus extends IPSModule
 				//$prog = getValue($this->GetIDForIdent("prog"));
 				//$sw = getValue($this->GetIDForIdent("SW"));
 				//$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
-				$this->Meldung();
+				$this->Auto();
            		}
 			
 			if (($SenderID == $triggerZP) && ($Message == 10603)){// && (boolval($Data[0]))){
