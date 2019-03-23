@@ -104,6 +104,7 @@ class ALGModus extends IPSModule
 			
 			//Standartaktion Aktivieren
 			$this->VariabelStandartaktion();
+			$this->VariabelOption();
 
 			
         	}
@@ -290,25 +291,24 @@ class ALGModus extends IPSModule
 
 			}
 			
-			
 			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-			//echo "Aus";
 		}
+		
 		else if($prog == 3){
 
-			if ($this->ReadPropertyBoolean("OpHei")){
-				IPS_SetHidden($this->GetIDForIdent("HZ"), false);
-			}
-			else{
-				IPS_SetHidden($this->GetIDForIdent("HZ"), true);
-			}
+			//if ($this->ReadPropertyBoolean("OpHei")){
+				//IPS_SetHidden($this->GetIDForIdent("HZ"), false);
+			//}
+			//else{
+				//IPS_SetHidden($this->GetIDForIdent("HZ"), true);
+			//}
 		
-			if ($this->ReadPropertyBoolean("OpMeld")){
-				IPS_SetHidden($this->GetIDForIdent("MD"), false);
-			}
-			else{
-				IPS_SetHidden($this->GetIDForIdent("MD"), true);
-			}
+			//if ($this->ReadPropertyBoolean("OpMeld")){
+				//IPS_SetHidden($this->GetIDForIdent("MD"), false);
+			//}
+			//else{
+				//IPS_SetHidden($this->GetIDForIdent("MD"), true);
+			//}
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 			
