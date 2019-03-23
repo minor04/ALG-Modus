@@ -263,8 +263,8 @@ class ALGModus extends IPSModule
 		//IPS_SetDisabled($this->GetIDForIdent("Mod"), true);
 		
 		if($prog == 2){
-			IPS_SetHidden($this->GetIDForIdent("MD"), true);
-			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
+			//IPS_SetHidden($this->GetIDForIdent("MD"), true);
+			//IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 			
@@ -342,8 +342,8 @@ class ALGModus extends IPSModule
 
 		else{
 			IPS_SetHidden($this->GetIDForIdent("Mod"), true);
-			IPS_SetHidden($this->GetIDForIdent("MD"), true);
-			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
+			//IPS_SetHidden($this->GetIDForIdent("MD"), true);
+			//IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 
