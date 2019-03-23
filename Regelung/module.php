@@ -50,7 +50,6 @@ class ALGModus extends IPSModule
 				IPS_SetVariableProfileIcon("ALG_Akt",  "Switch");
 				IPS_SetVariableProfileAssociation("ALG_Akt", false, "Deaktiv", "", 0x00FF00);
 				IPS_SetVariableProfileAssociation("ALG_Akt", true, "Aktiv", "", 0x00FF00);
-				
 			}
 		
 			
@@ -254,7 +253,7 @@ class ALGModus extends IPSModule
 	public function ALGAuswahl(){
 		
 	global $mod, $bear, $prog, $hz, $md, $zp ,$pa;
-					IPS_SetDisabled($this->GetIDForIdent("Mod"), false);
+		
 		$KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Zentral);
 		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
@@ -279,15 +278,15 @@ class ALGModus extends IPSModule
 				IPS_SetHidden($VariabelID_Ab, false);
 				IPS_SetHidden($VariabelID_An, false);
 				
-				if($zp == true){
-					SetValue($this->GetIDForIdent("Pa"), true);
-					SetValue($this->GetIDForIdent("Mod"), 1);
-					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
-				}
-				else{
-					SetValue($this->GetIDForIdent("Pa"), false);
-					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
-				}
+				//if($zp == true){
+					//SetValue($this->GetIDForIdent("Pa"), true);
+					//SetValue($this->GetIDForIdent("Mod"), 1);
+					//IPS_SetHidden($this->GetIDForIdent("Mod"), false);
+				//}
+				//else{
+					//SetValue($this->GetIDForIdent("Pa"), false);
+					//IPS_SetHidden($this->GetIDForIdent("Mod"), true);
+				//}
 
 			}
 			
@@ -371,7 +370,6 @@ class ALGModus extends IPSModule
 			if($prog == 3 && $hz == true){
 				SetValue($this->ReadPropertyInteger("ALG_HE"), true);
 				SetValue($this->GetIDForIdent("Mod"), 3);
-				//SetValue($this->ReadPropertyInteger("Mod"), 3);
 				IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 			}
 			if($prog == 3 && $md == true){
@@ -387,7 +385,6 @@ class ALGModus extends IPSModule
 			SetValue($this->GetIDForIdent("Prog"), 1);
 			SetValue($this->GetIDForIdent("Pa"), false);
 			SetValue($this->GetIDForIdent("Mod"), 1);
-			//SetValue($this->ReadPropertyInteger("Mod"), 3);
 			IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 		}
 		
@@ -406,30 +403,7 @@ class ALGModus extends IPSModule
 		
 	}
 	
-		
-	
-	//public function ALGHeizung(){
-	
-	//global $mod, $hz, $zp;
-		
-		//if($mod == 3 && $hz == true){
-			//SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-		//}
-		//else{
-			//SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-		//}
-		
-		//if($mod == 4 && $hz == true && $zp = true){
-			//SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-		//}
-		//else{
-			//SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-		//}
-
-		
-	//}
-		
-    
+		    
 		   
     }
 ?>
