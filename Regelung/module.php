@@ -365,6 +365,8 @@ class ALGModus extends IPSModule
 		if($zp == true){
 			if($prog == 2){
 				SetValue($this->GetIDForIdent("Pa"), true);
+				SetValue($this->GetIDForIdent("Mod"), 1);
+				IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 			}
 			if($prog == 3 && $hz == true){
 				SetValue($this->ReadPropertyInteger("ALG_HE"), true);
