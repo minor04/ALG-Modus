@@ -22,7 +22,7 @@ class ALGModus extends IPSModule
 				IPS_SetVariableProfileValues("ALG_Modus", 1, 2, 0);
 				IPS_SetVariableProfileDigits("ALG_Modus", 0);
 				IPS_SetVariableProfileAssociation("ALG_Modus", 1, "Party", "", 0xFFFFFF);
-				IPS_SetVariableProfileAssociation("ALG_Modus", 2, "Abewesend", "", 0xFF0000);
+				IPS_SetVariableProfileAssociation("ALG_Modus", 2, "Abewesend", "", 0xFFFF00);
 			}
 
 			if (!IPS_VariableProfileExists("SWS-Modus")) {
