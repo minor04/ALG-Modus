@@ -20,7 +20,7 @@ class ALGModus extends IPSModule
 				IPS_SetVariableProfileValues("ALG_Modus", 1, 2, 0);
 				IPS_SetVariableProfileDigits("ALG_Modus", 0);
 				IPS_SetVariableProfileAssociation("ALG_Modus", 1, "Party", "", 0xFFFFFF);
-				IPS_SetVariableProfileAssociation("ALG_Modus", 2, "Abewesend", "", 0xFFFF00);
+				IPS_SetVariableProfileAssociation("ALG_Modus", 2, "Abewesend", "", 0xFF0000);
 			}
 			if (!IPS_VariableProfileExists("SWS-Modus")) {
 			
@@ -331,13 +331,11 @@ class ALGModus extends IPSModule
 			}
 		}
 		else{
+			IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
-			
-			SetValue($this->GetIDForIdent("ZP"), false);
-			SetValue($this->GetIDForIdent("Pa"), false);
 			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 		}
 		
@@ -388,7 +386,7 @@ class ALGModus extends IPSModule
 		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
 			
 		//WFC_PushNotification(13905, 'Warnung', 'Test', '', 0);
-		WFC_PushNotification(42837, 'Warnung', 'Heey Du Stinker', '', 0);
+		WFC_PushNotification(42837, 'Warnung', 'Test', '', 0);
 		//WFC_PushNotification($InstanzID, 'Warnung', 'Test', '', 0);
 		
 		
