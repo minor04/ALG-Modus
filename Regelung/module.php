@@ -365,11 +365,11 @@ class ALGModus extends IPSModule
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Konfigurator Instanzen", 0);
 		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
 
-		if($prog == 3 && $md == true){
+		//if($prog == 3 && $md == true){
 
 			//WFC_PushNotification(42837, 'Warnung', 'Test', '', 0);
 			WFC_SendPopup(13905, "Warnung", "Test");
-		}
+		//}
 		
 		
 	}
