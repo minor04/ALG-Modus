@@ -236,10 +236,10 @@ class ALGModus extends IPSModule
 		IPS_SetParent($EreignisID_bis, $InstanzID);
 		IPS_SetPosition($EreignisID_bis, 11);
 		IPS_SetEventCyclic($EreignisID_bis, 1 /* Täglich */ ,5,0,0,0,0);
-		IPS_SetEventScript($EreignisID_bis, $KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
+		IPS_SetEventScript($EreignisID_bis, "$KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
 						    $InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Zentral);
 						    $VariabelID = IPS_GetVariableIDByName("AutoZSP", $InstanzID);
-						    SetValue($VariabelID, true);
+						    SetValue($VariabelID, true);"
 		);
 		IPS_SetEventActive($EreignisID_bis, true);
 	}
