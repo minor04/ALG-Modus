@@ -367,7 +367,8 @@ class ALGModus extends IPSModule
 
 		//if($prog == 3 && $md == true){
 
-			WFC_PushNotification(42837, 'Warnung', 'Test', '', 0);
+			//WFC_PushNotification(42837, 'Warnung', 'Test', '', 0);
+			WFC_SendPopup(13905, "Warnung", "Test");
 		//}
 		
 		
