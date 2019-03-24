@@ -20,7 +20,7 @@ class ALGModus extends IPSModule
 				IPS_SetVariableProfileValues("ALG_Modus", 1, 2, 0);
 				IPS_SetVariableProfileDigits("ALG_Modus", 0);
 				IPS_SetVariableProfileAssociation("ALG_Modus", 1, "Party", "", 0xFFFFFF);
-				IPS_SetVariableProfileAssociation("ALG_Modus", 2, "Abewesend", "", 0xFF0000);
+				IPS_SetVariableProfileAssociation("ALG_Modus", 2, "Abewesend", "", 0xFFFF00);
 			}
 			if (!IPS_VariableProfileExists("SWS-Modus")) {
 			
@@ -116,7 +116,7 @@ class ALGModus extends IPSModule
 				//$prog = getValue($this->GetIDForIdent("prog"));
 				//$sw = getValue($this->GetIDForIdent("SW"));
 				//$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
-				$this->Meldung();
+				$this->Auto();
            		}
 			
 			if (($SenderID == $triggerZP) && ($Message == 10603)){// && (boolval($Data[0]))){
@@ -137,7 +137,7 @@ class ALGModus extends IPSModule
         * ABC_Calculate($id);
         *
         */
-	
+		
 	public function RequestAction($key, $value){
 		global $mod, $bear, $prog, $hz, $md, $zp ,$pa;
         	switch ($key) {
@@ -239,8 +239,11 @@ class ALGModus extends IPSModule
 		IPS_SetParent($EreignisID_bis, $InstanzID);
 		IPS_SetPosition($EreignisID_bis, 11);
 		IPS_SetEventCyclic($EreignisID_bis, 1 /* Täglich */ ,5,0,0,0,0);
+		//IPS_SetEventScript 	($EreignisID_bis, $KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
+						//$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Zentral);
+						//$VariabelID = IPS_GetVariableIDByName("AutoZSP", $InstanzID);
+						//SetValue($VariabelID, true););
 		IPS_SetEventActive($EreignisID_bis, true);
-		
 	}
 	
 	public function ALGAuswahl(){
@@ -252,69 +255,36 @@ class ALGModus extends IPSModule
 		$VariabelID_Ab = IPS_GetEventIDByName("Von", $InstanzID);
 		$VariabelID_An = IPS_GetEventIDByName("Bis", $InstanzID);
 		
-		//IPS_SetDisabled($this->GetIDForIdent("Mod"), true);
-		
+		//__Party
 		if($prog == 2){
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 			
+			//___Auto
+			if($bear == 1){
+				IPS_SetHidden($VariabelID_Ab, false);
+				IPS_SetHidden($VariabelID_An, false);
+			}
+			
+			//___Ein
 			if($bear == 2){
 				SetValue($this->GetIDForIdent("Pa"), true);
 				SetValue($this->GetIDForIdent("Mod"), 1);
 				IPS_SetHidden($this->GetIDForIdent("Mod"), false);
-				
-			}
-					
-			if($bear == 1){
-				IPS_SetHidden($VariabelID_Ab, false);
-				IPS_SetHidden($VariabelID_An, false);
-				
-				//if($zp == true){
-					//SetValue($this->GetIDForIdent("Pa"), true);
-					//SetValue($this->GetIDForIdent("Mod"), 1);
-					//IPS_SetHidden($this->GetIDForIdent("Mod"), false);
-				//}
-				//else{
-					//SetValue($this->GetIDForIdent("Pa"), false);
-					//IPS_SetHidden($this->GetIDForIdent("Mod"), true);
-				//}
 			}
 			
 			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 		}
 		
+		//__Abwesend
 		else if($prog == 3){
-			//if ($this->ReadPropertyBoolean("OpHei")){
-				//IPS_SetHidden($this->GetIDForIdent("HZ"), false);
-			//}
-			//else{
-				//IPS_SetHidden($this->GetIDForIdent("HZ"), true);
-			//}
-		
-			//if ($this->ReadPropertyBoolean("OpMeld")){
-				//IPS_SetHidden($this->GetIDForIdent("MD"), false);
-			//}
-			//else{
-				//IPS_SetHidden($this->GetIDForIdent("MD"), true);
-			//}
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
 			$this->VariabelOption();
 			
-			if($bear == 2){
-				if($hz == true){
-					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-					SetValue($this->GetIDForIdent("Mod"), 2);
-					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
-				}
-				else{
-					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
-				}
-			}
-					
+			//___Auto
 			if($bear == 1){
 				IPS_SetHidden($VariabelID_Ab, false);
 				IPS_SetHidden($VariabelID_An, false);
@@ -329,13 +299,28 @@ class ALGModus extends IPSModule
 					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
 			}
+	
+			//___Ein
+			if($bear == 2){
+				if($hz == true){
+					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+					SetValue($this->GetIDForIdent("Mod"), 2);
+					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
+				}
+				else{
+					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
+				}
+			}
 		}
 		else{
-			IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
+			
+			SetValue($this->GetIDForIdent("ZP"), false);
+			SetValue($this->GetIDForIdent("Pa"), false);
 			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 		}
 		
@@ -362,7 +347,7 @@ class ALGModus extends IPSModule
 				IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 			}
 			if($prog == 3 && $md == true){
-				//SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+				$this->Meldung();
 			}
 		}
 		else{
@@ -386,7 +371,7 @@ class ALGModus extends IPSModule
 		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
 			
 		//WFC_PushNotification(13905, 'Warnung', 'Test', '', 0);
-		WFC_PushNotification(42837, 'Warnung', 'Test', '', 0);
+		WFC_PushNotification(42837, 'Warnung', 'Heey Du Stinker', '', 0);
 		//WFC_PushNotification($InstanzID, 'Warnung', 'Test', '', 0);
 		
 		
