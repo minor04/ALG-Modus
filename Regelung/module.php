@@ -113,8 +113,10 @@ class ALGModus extends IPSModule
 			$triggerZP = $this->ReadPropertyInteger("TrigZP");			
 			
 			if (($SenderID == $triggerAlBWM_01 or $triggerAlBWM_02) && ($Message == 10603)){// && (boolval($Data[0]))){
+				$bear = getValue($this->GetIDForIdent("BeAr"));
 				$prog = getValue($this->GetIDForIdent("Prog"));
 				$md = getValue($this->GetIDForIdent("MD"));
+				$zp = getValue($this->GetIDForIdent("ZP"));
 				$this->Meldung();
            		}
 			
@@ -367,9 +369,10 @@ class ALGModus extends IPSModule
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Konfigurator Instanzen", 0);
 		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
 
-		if($prog == 3 && $md == true){
-
-			//WFC_PushNotification(42837, 'Warnung', 'Test', '', 0);
+		if($prog == 3 && $md == true && $bear == 1 && $zp == true){
+			WFC_SendPopup(13905, "Warnung", "Test");
+		}
+		if($prog == 3 && $md == true && $bear == 2){
 			WFC_SendPopup(13905, "Warnung", "Test");
 		}
 		
