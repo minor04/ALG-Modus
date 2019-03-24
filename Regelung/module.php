@@ -113,7 +113,7 @@ class ALGModus extends IPSModule
 			$triggerZP = $this->ReadPropertyInteger("TrigZP");			
 			
 			if (($SenderID == $triggerAlBWM_01 or $triggerAlBWM_02) && ($Message == 10603)){// && (boolval($Data[0]))){
-				$this->Auto();
+				$this->Meldung();
            		}
 			
 			if (($SenderID == $triggerZP) && ($Message == 10603)){// && (boolval($Data[0]))){
@@ -340,7 +340,7 @@ class ALGModus extends IPSModule
 				IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 			}
 			if($prog == 3 && $md == true){
-				$this->Meldung();
+				//$this->Meldung();
 			}
 		}
 		else{
@@ -360,12 +360,17 @@ class ALGModus extends IPSModule
 	
 	public function Meldung(){
 		
+		global $mod, $bear, $prog, $hz, $md, $zp ,$pa;	
+		
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Konfigurator Instanzen", 0);
 		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
-			
+
+		if($prog == 3 && $md == true){
+
 		//WFC_PushNotification(13905, 'Warnung', 'Test', '', 0);
 		WFC_PushNotification(42837, 'Warnung', 'Heey Du Stinker', '', 0);
 		//WFC_PushNotification($InstanzID, 'Warnung', 'Test', '', 0);
+		}
 		
 		
 	}
