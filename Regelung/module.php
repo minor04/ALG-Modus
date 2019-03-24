@@ -113,9 +113,6 @@ class ALGModus extends IPSModule
 			$triggerZP = $this->ReadPropertyInteger("TrigZP");			
 			
 			if (($SenderID == $triggerAlBWM_01 or $triggerAlBWM_02) && ($Message == 10603)){// && (boolval($Data[0]))){
-				//$prog = getValue($this->GetIDForIdent("prog"));
-				//$sw = getValue($this->GetIDForIdent("SW"));
-				//$sw_abs = getValue($this->GetIDForIdent("SW_Abs"));
 				$this->Auto();
            		}
 			
@@ -239,10 +236,11 @@ class ALGModus extends IPSModule
 		IPS_SetParent($EreignisID_bis, $InstanzID);
 		IPS_SetPosition($EreignisID_bis, 11);
 		IPS_SetEventCyclic($EreignisID_bis, 1 /* Täglich */ ,5,0,0,0,0);
-		//IPS_SetEventScript 	($EreignisID_bis, $KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
-						//$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Zentral);
-						//$VariabelID = IPS_GetVariableIDByName("AutoZSP", $InstanzID);
-						//SetValue($VariabelID, true););
+		IPS_SetEventScript($EreignisID_bis, $KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
+						    $InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Zentral);
+						    $VariabelID = IPS_GetVariableIDByName("AutoZSP", $InstanzID);
+						    SetValue($VariabelID, true);
+		);
 		IPS_SetEventActive($EreignisID_bis, true);
 	}
 	
