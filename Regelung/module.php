@@ -6,6 +6,7 @@ $hz = true;
 $md = true;
 $zp = false;
 $pa = false;
+$bwmID = 0;
 class ALGModus extends IPSModule
 	{
 		
@@ -104,7 +105,7 @@ class ALGModus extends IPSModule
         	}
 	
 	        public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-		global $mod, $bear, $prog, $hz, $md, $zp;
+		global $mod, $bear, $prog, $hz, $md, $zp, $bwmID;
             		$triggerAlBWM_01 = $this->ReadPropertyInteger("AlBWM_01");
             		$triggerAlBWM_02 = $this->ReadPropertyInteger("AlBWM_02");
             		$triggerAlBWM_03 = $this->ReadPropertyInteger("AlBWM_03");
@@ -117,6 +118,13 @@ class ALGModus extends IPSModule
 				$prog = getValue($this->GetIDForIdent("Prog"));
 				$md = getValue($this->GetIDForIdent("MD"));
 				$zp = getValue($this->GetIDForIdent("ZP"));
+				
+				if ($SenderID == $triggerAlBWM_01 && $Message == 10603){
+					$bwmID = 1;
+				}
+				if ($SenderID == $triggerAlBWM_02 && $Message == 10603){
+					$bwmID = 2;
+				}
 				$this->Meldung();
            		}
 			
@@ -364,7 +372,7 @@ class ALGModus extends IPSModule
 	
 	public function Meldung(){
 		
-		global $mod, $bear, $prog, $hz, $md, $zp ,$pa;	
+		global $mod, $bear, $prog, $hz, $md, $zp ,$pa, $bwmID;	
 		
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Konfigurator Instanzen", 0);
 		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
