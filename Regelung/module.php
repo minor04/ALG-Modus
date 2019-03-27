@@ -378,9 +378,9 @@ class ALGModus extends IPSModule
 		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
 
 		if(($prog == 3 && $md == true && $bear == 1 && $zp == true) or ($prog == 3 && $md == true  && $bear == 2)){			
-			WFC_PushNotification(42837, 'Warnung', 'BWM Küche', '', 0);
+			
 			if($bwmID == 1){
-				
+				WFC_PushNotification(42837, 'Warnung', 'BWM Küche', '', 0);
 			}
 			//WFC_SendPopup(13905, "Warnung", "Test");
 			//WFC_SendNotification(42837, "Warnung", "Test");
