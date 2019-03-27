@@ -377,16 +377,20 @@ class ALGModus extends IPSModule
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Konfigurator Instanzen", 0);
 		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
 
-		if($prog == 3 && $md == true && $bear == 1 && $zp == true){
+		if(($prog == 3 && $md == true && $bear == 1 && $zp == true) or ($prog == 3 && $md == true && $bear == 2)){
+				WFC_SendNotification(42837, "Warnung", "BWM Küche");
+			if($bwmID == 1){
+				
+			}
 			//WFC_SendPopup(13905, "Warnung", "Test");
-			WFC_SendNotification(42837, "Warnung", "Test");
-			WFC_PushNotification(42837, 'Warnung', 'Test', '', 35556);
+			//WFC_SendNotification(42837, "Warnung", "Test");
+			//WFC_PushNotification(42837, 'Warnung', 'Test', '', 35556);
 		}
-		if($prog == 3 && $md == true && $bear == 2){
-			//WFC_SendPopup(13905, "Warnung", "Test");
-			WFC_SendNotification(42837, "Warnung", "Test");
-			WFC_PushNotification(42837, 'Warnung', 'Test', '', 35556);
-		}
+		//if($prog == 3 && $md == true && $bear == 2){
+			////WFC_SendPopup(13905, "Warnung", "Test");
+			//WFC_SendNotification(42837, "Warnung", "Test");
+			//WFC_PushNotification(42837, 'Warnung', 'Test', '', 35556);
+		//}
 		
 		
 	}
