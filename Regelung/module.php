@@ -61,7 +61,7 @@ class ALGModus extends IPSModule
 			$this->RegisterVariableBoolean("Pa", "Party", "~Switch", 8);
 			
 			//___Modulvariabeln______________________________________________________________________
-			$this->RegisterPropertyInteger("WebId", 0);
+			$this->RegisterPropertyString("WebId", 0);
 			$this->RegisterPropertyInteger("AlBWM_01", 0);
 			$this->RegisterPropertyInteger("AlBWM_02", 0);
 			$this->RegisterPropertyInteger("AlBWM_03", 0);
