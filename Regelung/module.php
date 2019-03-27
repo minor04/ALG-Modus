@@ -169,7 +169,7 @@ class ALGModus extends IPSModule
         */
 		
 	public function RequestAction($key, $value){
-		global $mod, $bear, $prog, $hz, $md, $zp ,$pa;
+		global $mod, $bear, $prog, $hz, $md, $as, $zp, $trigid;
         	switch ($key) {
         		//case 'Mod':
 				//$mod = $value;
@@ -296,7 +296,7 @@ class ALGModus extends IPSModule
 	
 	public function ALGAuswahl(){
 		
-	global $mod, $bear, $prog, $hz, $md, $zp ,$pa;
+	global $mod, $bear, $prog, $hz, $md, $as, $zp, $trigid;
 		
 		$KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Zentral);
@@ -378,7 +378,7 @@ class ALGModus extends IPSModule
 		
 	public function Auto(){
 		
-		global $mod, $bear, $prog, $hz, $md, $zp ,$pa;	
+		global $mod, $bear, $prog, $hz, $md, $as, $zp, $trigid;
 		
 		$KategorieID_Zentral = IPS_GetCategoryIDByName("Zentral", 0);
 		$InstanzID = IPS_GetInstanceIDByName("Modus", $KategorieID_Zentral);
