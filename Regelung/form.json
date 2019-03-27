@@ -20,6 +20,7 @@
 		{ "type": "SelectVariable", "name": "ALG_HE", "caption": "ALG Heizung" },
 		{ "type": "CheckBox", "name": "OpHei", "caption": "Option Heizung Anzeigen" },
 		{ "type": "CheckBox", "name": "OpMeld", "caption": "Option Meldung Anzeigen" }
+		{ "type": "CheckBox", "name": "OpAnwSi", "caption": "Option Anwesenheits Simulation Anzeigen" }
 	],
 		"actions":
 	[
