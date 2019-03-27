@@ -2,6 +2,8 @@
 	"elements":
 	[
 		{ "type": "Label", "label": "Input Variabeln" },
+		{ "type": "Label", "label": "Meldung" },
+		{ "type": "ValidationTextBox", "name": "WebId", "caption": "WebFront Id" },
 		{ "type": "SelectVariable", "name": "AlBWM_01", "caption": "BWM 01" },
 		{ "type": "ValidationTextBox", "name": "BZ_AlTrg_01", "caption": "Alarmtext Trigger 01" },
 		{ "type": "SelectVariable", "name": "AlBWM_02", "caption": "BWM 02" },
