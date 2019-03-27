@@ -59,8 +59,9 @@ class ALGModus extends IPSModule
 			$this->RegisterVariableInteger("Prog", "Programm", "ALG_Programm", 3);
 			$this->RegisterVariableBoolean("HZ", "- Heizung", "ALG_Akt", 5);
 			$this->RegisterVariableBoolean("MD", "- Meldung", "ALG_Akt", 6);
-			$this->RegisterVariableBoolean("ZP", "AutoZSP", "~Switch", 7);
-			$this->RegisterVariableBoolean("Pa", "Party", "~Switch", 8);
+			$this->RegisterVariableBoolean("AS", "- Anwesenheits Simulation", "ALG_Akt", 7);
+			$this->RegisterVariableBoolean("ZP", "AutoZSP", "~Switch", 8);
+			$this->RegisterVariableBoolean("Pa", "Party", "~Switch", 9);
 			
 			//___Modulvariabeln______________________________________________________________________
 			$this->RegisterPropertyString("WebId", 0);
@@ -245,6 +246,13 @@ class ALGModus extends IPSModule
 		}
 		else{
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
+		}
+		
+		if ($this->ReadPropertyBoolean("OpAnwSi")){
+			IPS_SetHidden($this->GetIDForIdent("AS"), false);
+		}
+		else{
+			IPS_SetHidden($this->GetIDForIdent("AS"), true);
 		}
 	}
 		
