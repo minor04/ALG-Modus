@@ -345,7 +345,7 @@ class ALGModus extends IPSModule
 					//IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 				//}
 				//else{
-					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+					//SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 					//IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				//}
 			}
@@ -353,7 +353,7 @@ class ALGModus extends IPSModule
 			//___Ein
 			if($bear == 2){
 				if($hz == true){
-					//SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
 					//SetValue($this->GetIDForIdent("Mod"), 2);
 					//IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 				}
