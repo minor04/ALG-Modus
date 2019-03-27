@@ -10,7 +10,7 @@ $pa = false;	// Dummy Variabel Party
 $trigid = 0;	// Dummy Triger bestimmung
 
 class ALGModus extends IPSModule
-	{
+{
 		
 		public function Create()
 		{
@@ -396,7 +396,7 @@ class ALGModus extends IPSModule
 				SetValue($this->GetIDForIdent("Mod"), 2);
 				IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 			}
-			if($prog == 3 && $md == true){
+			if($prog == 3 && $as == true){
 				//$this->Meldung();
 			}
 		}
@@ -451,9 +451,7 @@ class ALGModus extends IPSModule
 			//WFC_PushNotification(42837, 'Warnung', 'Test', '', 35556);
 		}		
 		
-	}
-	
-		    
+	}    
 		   
     }
 ?>
