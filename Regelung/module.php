@@ -382,7 +382,7 @@ class ALGModus extends IPSModule
 			
 			if($bwmID == 1){
 				$ken = $this->ReadPropertyString("Ken_AlBWM_01");
-				WFC_PushNotification(42837, 'Warnung', '$ken', '', 0);
+				WFC_PushNotification(42837, 'Warnung', $ken, '', 0);
 			}
 			//WFC_SendPopup(13905, "Warnung", "Test");
 			//WFC_SendNotification(42837, "Warnung", "Test");
