@@ -401,30 +401,24 @@ class ALGModus extends IPSModule
 			}
 			if($bwmID == 2){
 				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_02");
-				WFC_PushNotification(42837, 'Warnung', $bz_altrg, '', 0);
+				WFC_PushNotification($webid, 'Warnung', $bz_altrg, '', 0);
 			}
 			if($bwmID == 3){
 				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_03");
-				WFC_PushNotification(42837, 'Warnung', $bz_altrg, '', 0);
+				WFC_PushNotification($webid, 'Warnung', $bz_altrg, '', 0);
 			}
 			if($bwmID == 4){
 				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_04");
-				WFC_PushNotification(42837, 'Warnung', $bz_altrg, '', 0);
+				WFC_PushNotification($webid, 'Warnung', $bz_altrg, '', 0);
 			}
 			if($bwmID == 5){
 				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_05");
-				WFC_PushNotification(42837, 'Warnung', $bz_altrg, '', 0);
+				WFC_PushNotification($webid, 'Warnung', $bz_altrg, '', 0);
 			}
 			//WFC_SendPopup(13905, "Warnung", "Test");
 			//WFC_SendNotification(42837, "Warnung", "Test");
 			//WFC_PushNotification(42837, 'Warnung', 'Test', '', 35556);
-		}
-		//if($prog == 3 && $md == true && $bear == 2){
-			////WFC_SendPopup(13905, "Warnung", "Test");
-			//WFC_SendNotification(42837, "Warnung", "Test");
-			//WFC_PushNotification(42837, 'Warnung', 'Test', '', 35556);
-		//}
-		
+		}		
 		
 	}
 	
