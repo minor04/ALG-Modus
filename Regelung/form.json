@@ -13,6 +13,7 @@
 		{ "type": "SelectVariable", "name": "AlBWM_05", "caption": "BWM 05" },
 		{ "type": "ValidationTextBox", "name": "BZ_AlTrg_05", "caption": "Alarmtext Trigger 05" },
 		{ "type": "SelectVariable", "name": "TrigZP", "caption": "ZP Triger" },
+		
 		{ "type": "Label", "label": "Output Variabln" },
 		{ "type": "SelectVariable", "name": "ALG_HE", "caption": "ALG Heizung" },
 		{ "type": "CheckBox", "name": "OpHei", "caption": "Option Heizung Anzeigen" },
