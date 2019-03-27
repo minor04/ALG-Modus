@@ -2,7 +2,7 @@
 	"elements":
 	[
 		{ "type": "Label", "label": "Input Variabeln" },
-		{ "type": "Label", "label": "Meldung" },
+		{ "type": "Label", "label": "Settings Meldung" },
 		{ "type": "ValidationTextBox", "name": "WebId", "caption": "WebFront Id" },
 		{ "type": "SelectVariable", "name": "AlBWM_01", "caption": "BWM 01" },
 		{ "type": "ValidationTextBox", "name": "BZ_AlTrg_01", "caption": "Alarmtext Trigger 01" },
@@ -14,8 +14,10 @@
 		{ "type": "ValidationTextBox", "name": "BZ_AlTrg_04", "caption": "Alarmtext Trigger 04" },
 		{ "type": "SelectVariable", "name": "AlBWM_05", "caption": "BWM 05" },
 		{ "type": "ValidationTextBox", "name": "BZ_AlTrg_05", "caption": "Alarmtext Trigger 05" },
+		{ "type": "Label", "label": "Settings Heizung" },
 		{ "type": "SelectVariable", "name": "TrigZP", "caption": "ZP Triger" },
 		
+		{ "type": "Label", "label": "" },
 		{ "type": "Label", "label": "Output Variabln" },
 		{ "type": "SelectVariable", "name": "ALG_HE", "caption": "ALG Heizung" },
 		{ "type": "CheckBox", "name": "OpHei", "caption": "Option Heizung Anzeigen" },
