@@ -66,6 +66,7 @@ class ALGModus extends IPSModule
 			$this->RegisterPropertyInteger("AlBWM_03", 0);
 			$this->RegisterPropertyInteger("AlBWM_04", 0);
 			$this->RegisterPropertyInteger("AlBWM_05", 0);
+			$this->RegisterPropertyString("Ken_AlBWM_01", 0);
 			$this->RegisterPropertyInteger("TrigZP", 0);
 			
 			$this->RegisterPropertyInteger("ALG_HE", 0);
@@ -380,7 +381,8 @@ class ALGModus extends IPSModule
 		if(($prog == 3 && $md == true && $bear == 1 && $zp == true) or ($prog == 3 && $md == true  && $bear == 2)){			
 			
 			if($bwmID == 1){
-				WFC_PushNotification(42837, 'Warnung', 'BWM Küche', '', 0);
+				$ken = $this->ReadPropertyString("Ken_AlBWM_01");
+				WFC_PushNotification(42837, 'Warnung', '$ken', '', 0);
 			}
 			//WFC_SendPopup(13905, "Warnung", "Test");
 			//WFC_SendNotification(42837, "Warnung", "Test");
