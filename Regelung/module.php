@@ -61,6 +61,7 @@ class ALGModus extends IPSModule
 			$this->RegisterVariableBoolean("Pa", "Party", "~Switch", 8);
 			
 			//___Modulvariabeln______________________________________________________________________
+			$this->RegisterPropertyInteger("WebId", 0);
 			$this->RegisterPropertyInteger("AlBWM_01", 0);
 			$this->RegisterPropertyInteger("AlBWM_02", 0);
 			$this->RegisterPropertyInteger("AlBWM_03", 0);
@@ -390,12 +391,13 @@ class ALGModus extends IPSModule
 		
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Konfigurator Instanzen", 0);
 		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
+		$webid = $this->ReadPropertyString("WebId");
 
 		if(($prog == 3 && $md == true && $bear == 1 && $zp == true) or ($prog == 3 && $md == true  && $bear == 2)){			
 			
 			if($bwmID == 1){
 				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_01");
-				WFC_PushNotification(42837, 'Warnung', $bz_altrg, '', 0);
+				WFC_PushNotification($webid, 'Warnung', $bz_altrg, '', 0);
 			}
 			if($bwmID == 2){
 				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_02");
