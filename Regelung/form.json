@@ -1,14 +1,15 @@
 {
 	"elements":
 	[
-		{ "type": "Label", "label": "Inputs" },
+		{ "type": "Label", "label": "Input Variabeln" },
 		{ "type": "SelectVariable", "name": "AlBWM_01", "caption": "BWM 01" },
+		{ "type": "ValidationTextBox", "name": "Ken_AlBWM_01", "caption": "Kennzeichnung BWM 01" },
 		{ "type": "SelectVariable", "name": "AlBWM_02", "caption": "BWM 02" },
 		{ "type": "SelectVariable", "name": "AlBWM_03", "caption": "BWM 03" },
 		{ "type": "SelectVariable", "name": "AlBWM_04", "caption": "BWM 04" },
 		{ "type": "SelectVariable", "name": "AlBWM_05", "caption": "BWM 05" },
 		{ "type": "SelectVariable", "name": "TrigZP", "caption": "ZP Triger" },
-		{ "type": "Label", "label": "Outputs" },
+		{ "type": "Label", "label": "Output Variabln" },
 		{ "type": "SelectVariable", "name": "ALG_HE", "caption": "ALG Heizung" },
 		{ "type": "CheckBox", "name": "OpHei", "caption": "Option Heizung Anzeigen" },
 		{ "type": "CheckBox", "name": "OpMeld", "caption": "Option Meldung Anzeigen" }
