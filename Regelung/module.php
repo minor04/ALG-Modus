@@ -6,8 +6,8 @@ $hz = true;	// Option Heizung
 $md = true;	// Option Meldung
 $ansi = true;	// Option Anwesenheitssimulation
 $zp = false;	// Auto Zeitschaltprogramm
-$pa = false;	// 
-$trigid = 0;	// 
+$pa = false;	// Dummy Variabel Party
+$trigid = 0;	// Dummy Triger bestimmung
 
 class ALGModus extends IPSModule
 	{
