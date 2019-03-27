@@ -78,7 +78,7 @@ class ALGModus extends IPSModule
 			$this->RegisterPropertyInteger("TrigZP", 0);
 			
 			$this->RegisterPropertyInteger("ALG_HE", 0);
-			$this->RegisterPropertyBoolean("AS_An", false);
+			$this->RegisterPropertyInteger("AS_An", 0);
 			$this->RegisterPropertyBoolean("OpHei", true);
 			$this->RegisterPropertyBoolean("OpMeld", true);
 			$this->RegisterPropertyBoolean("OpAnwSi", true);
