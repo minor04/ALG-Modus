@@ -1,12 +1,14 @@
 <?
-$mod = 1;
-$bear = 1;
-$prog = 1;
-$hz = true;
-$md = true;
-$zp = false;
-$pa = false;
-$bwmID = 0;
+$mod = 1;	// Modus
+$bear = 1;	// Betriebsart
+$prog = 1;	// Programm
+$hz = true;	// Option Heizung
+$md = true;	// Option Meldung
+$ansi = true;	// Option Anwesenheitssimulation
+$zp = false;	// Auto Zeitschaltprogramm
+$pa = false;	// 
+$trigid = 0;	// 
+
 class ALGModus extends IPSModule
 	{
 		
@@ -77,6 +79,7 @@ class ALGModus extends IPSModule
 			$this->RegisterPropertyInteger("ALG_HE", 0);
 			$this->RegisterPropertyBoolean("OpHei", true);
 			$this->RegisterPropertyBoolean("OpMeld", true);
+			$this->RegisterPropertyBoolean("OpAnwSi", true);
 			//$this->RegisterPropertyInteger("UpdateWeatherInterval", 30);
 			//$this->RegisterPropertyString("APIkey", 0);
 			
@@ -111,7 +114,7 @@ class ALGModus extends IPSModule
         	}
 	
 	        public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-		global $mod, $bear, $prog, $hz, $md, $zp, $bwmID;
+		global $mod, $bear, $prog, $hz, $md, $zp, $trigid;
             		$triggerAlBWM_01 = $this->ReadPropertyInteger("AlBWM_01");
             		$triggerAlBWM_02 = $this->ReadPropertyInteger("AlBWM_02");
             		$triggerAlBWM_03 = $this->ReadPropertyInteger("AlBWM_03");
@@ -126,19 +129,19 @@ class ALGModus extends IPSModule
 				$zp = getValue($this->GetIDForIdent("ZP"));
 				
 				if ($SenderID == $triggerAlBWM_01 && $Message == 10603){
-					$bwmID = 1;
+					$trigid = 1;
 				}
 				if ($SenderID == $triggerAlBWM_02 && $Message == 10603){
-					$bwmID = 2;
+					$trigid = 2;
 				}
 				if ($SenderID == $triggerAlBWM_03 && $Message == 10603){
-					$bwmID = 3;
+					$trigid = 3;
 				}
 				if ($SenderID == $triggerAlBWM_04 && $Message == 10603){
-					$bwmID = 4;
+					$trigid = 4;
 				}
 				if ($SenderID == $triggerAlBWM_05 && $Message == 10603){
-					$bwmID = 5;
+					$trigid = 5;
 				}
 				$this->Meldung();
            		}
@@ -387,7 +390,7 @@ class ALGModus extends IPSModule
 	
 	public function Meldung(){
 		
-		global $mod, $bear, $prog, $hz, $md, $zp ,$pa, $bwmID;	
+		global $mod, $bear, $prog, $hz, $md, $zp ,$pa, $trigid;	
 		
 		//$KategorieID_Settings = IPS_GetCategoryIDByName("Konfigurator Instanzen", 0);
 		//$InstanzID = IPS_GetInstanceIDByName("WebFront", 0);
@@ -395,23 +398,23 @@ class ALGModus extends IPSModule
 
 		if(($prog == 3 && $md == true && $bear == 1 && $zp == true) or ($prog == 3 && $md == true  && $bear == 2)){			
 			
-			if($bwmID == 1){
+			if($trigid == 1){
 				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_01");
 				WFC_PushNotification($webid, 'Warnung', $bz_altrg, '', 0);
 			}
-			if($bwmID == 2){
+			if($trigid == 2){
 				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_02");
 				WFC_PushNotification($webid, 'Warnung', $bz_altrg, '', 0);
 			}
-			if($bwmID == 3){
+			if($trigid == 3){
 				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_03");
 				WFC_PushNotification($webid, 'Warnung', $bz_altrg, '', 0);
 			}
-			if($bwmID == 4){
+			if($trigid == 4){
 				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_04");
 				WFC_PushNotification($webid, 'Warnung', $bz_altrg, '', 0);
 			}
-			if($bwmID == 5){
+			if($trigid == 5){
 				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_05");
 				WFC_PushNotification($webid, 'Warnung', $bz_altrg, '', 0);
 			}
