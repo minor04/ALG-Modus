@@ -66,7 +66,11 @@ class ALGModus extends IPSModule
 			$this->RegisterPropertyInteger("AlBWM_03", 0);
 			$this->RegisterPropertyInteger("AlBWM_04", 0);
 			$this->RegisterPropertyInteger("AlBWM_05", 0);
-			$this->RegisterPropertyString("Ken_AlBWM_01", 0);
+			$this->RegisterPropertyString("BZ_AlTrg_01", 0);
+			$this->RegisterPropertyString("BZ_AlTrg_02", 0);
+			$this->RegisterPropertyString("BZ_AlTrg_03", 0);
+			$this->RegisterPropertyString("BZ_AlTrg_04", 0);
+			$this->RegisterPropertyString("BZ_AlTrg_05", 0);
 			$this->RegisterPropertyInteger("TrigZP", 0);
 			
 			$this->RegisterPropertyInteger("ALG_HE", 0);
@@ -114,7 +118,7 @@ class ALGModus extends IPSModule
             		$triggerAlBWM_05 = $this->ReadPropertyInteger("AlBWM_05");
 			$triggerZP = $this->ReadPropertyInteger("TrigZP");			
 			
-			if (($SenderID == $triggerAlBWM_01 or $triggerAlBWM_02) && ($Message == 10603)){// && (boolval($Data[0]))){
+			if (($SenderID == $triggerAlBWM_01 or $triggerAlBWM_02 or $SenderID == $triggerAlBWM_03 or $triggerAlBWM_04 or $triggerAlBWM_05) && ($Message == 10603)){// && (boolval($Data[0]))){
 				$bear = getValue($this->GetIDForIdent("BeAr"));
 				$prog = getValue($this->GetIDForIdent("Prog"));
 				$md = getValue($this->GetIDForIdent("MD"));
@@ -125,6 +129,15 @@ class ALGModus extends IPSModule
 				}
 				if ($SenderID == $triggerAlBWM_02 && $Message == 10603){
 					$bwmID = 2;
+				}
+				if ($SenderID == $triggerAlBWM_03 && $Message == 10603){
+					$bwmID = 3;
+				}
+				if ($SenderID == $triggerAlBWM_04 && $Message == 10603){
+					$bwmID = 4;
+				}
+				if ($SenderID == $triggerAlBWM_05 && $Message == 10603){
+					$bwmID = 5;
 				}
 				$this->Meldung();
            		}
@@ -381,8 +394,24 @@ class ALGModus extends IPSModule
 		if(($prog == 3 && $md == true && $bear == 1 && $zp == true) or ($prog == 3 && $md == true  && $bear == 2)){			
 			
 			if($bwmID == 1){
-				$ken = $this->ReadPropertyString("Ken_AlBWM_01");
-				WFC_PushNotification(42837, 'Warnung', $ken, '', 0);
+				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_01");
+				WFC_PushNotification(42837, 'Warnung', $bz_altrg, '', 0);
+			}
+			if($bwmID == 2){
+				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_02");
+				WFC_PushNotification(42837, 'Warnung', $bz_altrg, '', 0);
+			}
+			if($bwmID == 3){
+				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_03");
+				WFC_PushNotification(42837, 'Warnung', $bz_altrg, '', 0);
+			}
+			if($bwmID == 4){
+				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_04");
+				WFC_PushNotification(42837, 'Warnung', $bz_altrg, '', 0);
+			}
+			if($bwmID == 5){
+				$bz_altrg = $this->ReadPropertyString("BZ_AlTrg_05");
+				WFC_PushNotification(42837, 'Warnung', $bz_altrg, '', 0);
 			}
 			//WFC_SendPopup(13905, "Warnung", "Test");
 			//WFC_SendNotification(42837, "Warnung", "Test");
