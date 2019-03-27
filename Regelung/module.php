@@ -78,6 +78,7 @@ class ALGModus extends IPSModule
 			$this->RegisterPropertyInteger("TrigZP", 0);
 			
 			$this->RegisterPropertyInteger("ALG_HE", 0);
+			$this->RegisterPropertyBoolean("AS_An", false);
 			$this->RegisterPropertyBoolean("OpHei", true);
 			$this->RegisterPropertyBoolean("OpMeld", true);
 			$this->RegisterPropertyBoolean("OpAnwSi", true);
@@ -339,12 +340,12 @@ class ALGModus extends IPSModule
 				IPS_SetHidden($VariabelID_An, false);
 				
 				if($hz == true && $zp == true){
-					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
+					//SetValue($this->ReadPropertyInteger("ALG_HE"), true);
 					SetValue($this->GetIDForIdent("Mod"), 2);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 				}
 				else{
-					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+					//SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
 			}
@@ -358,6 +359,17 @@ class ALGModus extends IPSModule
 				}
 				else{
 					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
+				}
+				
+				if($as == true){
+					SetValue($this->ReadPropertyInteger("AS_An"), true);
+					SetValue($this->GetIDForIdent("Mod"), 2);
+					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
+					
+				}
+				else{
+					SetValue($this->ReadPropertyInteger("AS_An"), false);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
 			}
@@ -397,11 +409,12 @@ class ALGModus extends IPSModule
 				IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 			}
 			if($prog == 3 && $as == true){
-				//$this->Meldung();
+				SetValue($this->ReadPropertyInteger("AS_An"), true);
 			}
 		}
 		else{
 			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
+			SetValue($this->ReadPropertyInteger("AS_An"), false);
 			IPS_SetHidden($this->GetIDForIdent("MD"), true);
 			IPS_SetHidden($this->GetIDForIdent("HZ"), true);
 			IPS_SetHidden($this->GetIDForIdent("AS"), true);
