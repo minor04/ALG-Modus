@@ -311,6 +311,7 @@ class ALGModus extends IPSModule
 			IPS_SetHidden($this->GetIDForIdent("AS"), true);		
 			IPS_SetHidden($VariabelID_Ab, true);
 			IPS_SetHidden($VariabelID_An, true);
+			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 			
 			//___Auto
 			if($bear == 1){
@@ -325,7 +326,6 @@ class ALGModus extends IPSModule
 				IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 			}
 			
-			SetValue($this->ReadPropertyInteger("ALG_HE"), false);
 		}
 		
 		//__Abwesend
@@ -354,28 +354,20 @@ class ALGModus extends IPSModule
 			if($bear == 2){
 				if($hz == true){
 					SetValue($this->ReadPropertyInteger("ALG_HE"), true);
-					//SetValue($this->GetIDForIdent("Mod"), 2);
-					//IPS_SetHidden($this->GetIDForIdent("Mod"), false);
 				}
 				else{
 					SetValue($this->ReadPropertyInteger("ALG_HE"), false);
-					//IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
 				
 				if($as == true){
-					SetValue($this->ReadPropertyInteger("AS_An"), true);
-					//SetValue($this->GetIDForIdent("Mod"), 2);
-					//IPS_SetHidden($this->GetIDForIdent("Mod"), false);
-					
+					SetValue($this->ReadPropertyInteger("AS_An"), true);					
 				}
 				else{
 					SetValue($this->ReadPropertyInteger("AS_An"), false);
-					//IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
 				if($hz == true or $md == true or $as == true){
 					SetValue($this->GetIDForIdent("Mod"), 2);
 					IPS_SetHidden($this->GetIDForIdent("Mod"), false);
-					
 				}
 				else{
 					IPS_SetHidden($this->GetIDForIdent("Mod"), true);
