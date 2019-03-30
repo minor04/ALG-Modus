@@ -349,12 +349,12 @@ class ALGModus extends IPSModule
 					//IPS_SetHidden($this->GetIDForIdent("Mod"), true);
 				}
 				
-				//if($as == true && $zp == true){
-					//SetValue($this->ReadPropertyInteger("AS_An"), true);					
-				//}
-				//else{
-					//SetValue($this->ReadPropertyInteger("AS_An"), false);
-				//}
+				if($as == true && $zp == true){
+					SetValue($this->ReadPropertyInteger("AS_An"), true);					
+				}
+				else{
+					SetValue($this->ReadPropertyInteger("AS_An"), false);
+				}
 			}
 	
 			//___Ein
