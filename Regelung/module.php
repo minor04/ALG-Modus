@@ -354,6 +354,7 @@ class ALGModus extends IPSModule
 				}
 				else{
 					SetValue($this->ReadPropertyInteger("AS_An"), false);
+				}
 			}
 	
 			//___Ein
